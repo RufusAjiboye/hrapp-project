@@ -1,4 +1,4 @@
-- hosts: First Web_Server
+- hosts: First_Server
   become: yes
   tasks:
    - name:install app packages
@@ -15,7 +15,7 @@
        state 
 
 
-- hosts: Second Web_Server
+- hosts: Second_Server
   become: yes
   tasks:
    - name:install app packages
@@ -32,7 +32,7 @@
        state: latest 
 
 
-- hosts: Third Web_Server
+- hosts: Third_Server
   become: yes
   tasks:
    - name:install app packages
