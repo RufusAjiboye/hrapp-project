@@ -2,11 +2,11 @@
   becomes: yes
   tasks:
    - name:install app packages
-     yum:
+   - yum:
         name: docker
         state: latest
    - name: install git packages
-     yum:
+    yum:
        name: git
        state: latest
    - name: install apache webserver
