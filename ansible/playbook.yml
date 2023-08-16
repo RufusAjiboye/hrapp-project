@@ -1,0 +1,45 @@
+- hosts: First Web_Server
+  becomes: yes
+  tasks:
+   - name:install app packages
+     yum:
+        name: docker
+        state: latest
+   - name: install git packages
+     yum:
+       name: git
+       state: latest
+   - name: install apache webserver
+     yum:
+       name: httpd
+       state 
+
+
+- hosts: Second Web_Server
+  becomes: yes
+  tasks:
+   - name:install app packages
+     yum:
+        name: docker
+        state: latest
+   - name: install nginx webserver
+     yum:
+        name: httpd
+        state
+   - name: install git packages
+     yum:
+       name: git
+       state: latest 
+
+
+- hosts: Third Web_Server
+  becomes: yes
+  tasks:
+   - name:install app packages
+     yum:
+        name: docker
+        state: latest
+   - name: install git packages
+     yum:
+       name: git
+       state: latest 
