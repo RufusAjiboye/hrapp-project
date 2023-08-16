@@ -1,5 +1,5 @@
 - hosts: First Web_Server
-  becomes: yes
+  become: yes
   tasks:
    - name:install app packages
    - yum:
@@ -16,7 +16,7 @@
 
 
 - hosts: Second Web_Server
-  becomes: yes
+  become: yes
   tasks:
    - name:install app packages
      yum:
@@ -33,7 +33,7 @@
 
 
 - hosts: Third Web_Server
-  becomes: yes
+  become: yes
   tasks:
    - name:install app packages
      yum:
