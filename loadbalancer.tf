@@ -48,6 +48,16 @@ resource "aws_lb_listener" "hrapp_listener2" {
 
 
 
+
+
+
+
+
+
+
+
+
+
 # resource "aws_launch_configuration" "hrapp" {
 
 #   image_id                    = var.ec2_ami

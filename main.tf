@@ -1,20 +1,11 @@
-# terraform {
-#   required_providers {
-#     aws = {
-#       source  = "hashicorp/aws"
-#       version = "~> 4.16"
-#     }
-#   }
-
-#   required_version = ">= 1.2.0"
-# }
-
-# provider "aws" {
-#   region = "eu-west-1"
-# }
-
-
-
+resource "aws_instance" "thehrapp" {
+    ami                         = var.ec2_ami
+    instance_type               = var.ec2_instance_type
+    key_name                    = var.ec2_key_name
+    tags = {
+        value = "Hr_Applcation"
+    } 
+}
 
 
 
