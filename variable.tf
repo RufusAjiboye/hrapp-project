@@ -43,7 +43,7 @@ variable "DB-password" {
 variable "DB-name" {
   description = "This variable will manage the name of the DB set up"
   type        = string
-  default     = "hr_app_project"
+  default     = "HR_Database"
 }
 
 variable "DB-engine" {
@@ -67,7 +67,7 @@ variable "engine_version" {
 variable "identifier" {
   description = "This variable will manage the database identifier for DB set up"
   type        = string
-  default     = "hrapp-rds-instance"
+  default     = "hrapp-database"
 }
 
 
