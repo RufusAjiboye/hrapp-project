@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3>Current time is {{gmt_dt}} from machine {{ request.host.split(':')[0] }}</h3> 
+    <p></p>
+    <h1 style="width: 100%">{% block title %}  Candidate List {% endblock %}</h1>
+    <div class="content">
+        {% for usr in user %}
+            <div class="student">
+                <p><b>#{{ usr.id }}</b></p>
+                <b>
+                    <p class="name">{{ usr.firstname }} {{ usr.lastname }}</p>
+                </b>
+                <p>{{ usr.email }}</p>
+                <div class="bio">
+                    <h4>Location</h4>
+                    <p>{{ usr.city }}</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}

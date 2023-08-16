@@ -1,0 +1,40 @@
+
+
+
+
+
+AWS Services
+============
+RDS/ Postgres Database
+Loa balancer(s)
+Route 53
+TLS Certificate
+SES ( potentially)
+CloudWatch
+EC2
+
+
+
+#Objectives
+===========
+
+Help build and deploy a HR Management Portal into an Organisation Infrastructure
+
+1.  We need to build the hardware infrastructure to host the application
+2.  We need a CICD to manage infrastructure and application build
+3.  Need to build resilence into the system
+4.  Add Monitoring
+5.  Make it easy to use
+
+##Architecture
+==============
+Building a Reverse Proxy for a portal 
+high availability system
+Fault Tolerant system
+
+##Monitoring and Alerting
+====================
+Prometheus /Grafana
+
+### to execute the app run...    
+flask run --host=0.0.0.0 --port=5000
