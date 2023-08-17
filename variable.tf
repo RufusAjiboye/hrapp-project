@@ -22,12 +22,6 @@ variable "certificate_arn" {
   default     = "arn:aws:acm:eu-west-1:622658514249:certificate/ca534fd3-96a8-494a-b182-6b71bad9696f"
 }
 
-variable "my-vpc" {
-  description = "This variable will manage the the value of VPC"
-  type        = string
-  default     = "vpc-0de121ec0ecf8eeb6"
-}
-
 variable "DB-username" {
   description = "This variable will manage the username for DB set up"
   type        = string

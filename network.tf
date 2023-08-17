@@ -1,5 +1,5 @@
 resource "aws_subnet" "subnet_public1" {
-  vpc_id            = var.my-vpc
+  vpc_id            = aws_vpc.localvpc.id
   cidr_block        = "100.73.0.0/24"
   availability_zone = "eu-west-1a"
 
@@ -9,7 +9,7 @@ resource "aws_subnet" "subnet_public1" {
 }
 
 resource "aws_subnet" "subnet_public2" {
-  vpc_id            = var.my-vpc
+  vpc_id            = aws_vpc.localvpc.id
   cidr_block        = "100.68.32.0/24"
   availability_zone = "eu-west-1b"
 
@@ -29,8 +29,7 @@ resource "aws_vpc" "localvpc" {
 }
 
 resource "aws_internet_gateway" "igw" {
-  vpc_id = var.my-vpc
-  #vpc_id = "vpc-02f4aea5fd2d0f731"
+  vpc_id = aws_vpc.localvpc.id
 
   tags = {
     Name = "IGW"
@@ -39,7 +38,7 @@ resource "aws_internet_gateway" "igw" {
 }
 
 resource "aws_route_table" "awsrt" {
-  vpc_id = var.my-vpc
+  vpc_id = aws_vpc.localvpc.id
 
   tags = {
     Name = "RouteTable"

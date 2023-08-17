@@ -25,7 +25,7 @@ resource "aws_default_subnet" "subnet_az2" {
 resource "aws_security_group" "database_security_group" {
   name        = "database security group"
   description = "enable Postgres/PGAdmin access on port 5432"
-  vpc_id      = var.my-vpc
+  vpc_id      = aws_vpc.localvpc.id
 
 
   ingress {
