@@ -76,4 +76,4 @@ resource "aws_db_instance" "db_instance" {
   availability_zone      = data.aws_availability_zones.available_zones.names[0]
   publicly_accessible    = true
   skip_final_snapshot    = true
-}
+} 

@@ -1,6 +1,6 @@
 resource "aws_subnet" "subnet_public1" {
   vpc_id            = aws_vpc.localvpc.id
-  cidr_block        = "100.73.0.0/24"
+  cidr_block        = "10.0.1.0/24"
   availability_zone = "eu-west-1a"
 
   tags = {
@@ -10,7 +10,7 @@ resource "aws_subnet" "subnet_public1" {
 
 resource "aws_subnet" "subnet_public2" {
   vpc_id            = aws_vpc.localvpc.id
-  cidr_block        = "100.68.32.0/24"
+  cidr_block        = "10.0.2.0/24"
   availability_zone = "eu-west-1b"
 
 
