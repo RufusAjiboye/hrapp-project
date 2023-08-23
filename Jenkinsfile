@@ -3,8 +3,8 @@ pipeline {
     environment {
         ACCCESS_KEY_ID = credentials ('ACCESS_KEY_ID')
         SECRET_ACCESS_KEY = credentials('SECRET_ACCESS_KEY')
-        username = credentials ('username')
-        password = credentials ('password')
+        myusername = credentials ('hub-username')
+        mypassword = credentials ('hub-password')
         version = "v2"
     }
     stages {
@@ -19,7 +19,7 @@ pipeline {
                 sh '''
                     cd hrapp-project
                     docker build -t 02271589/proj:$version .
-                    docker run --name mypross -d -p 80:5000 02271589/proj:$version
+                    docker run --name myprojer -d -p 80:5000 02271589/proj:$version
                 '''
             }
         }
@@ -28,7 +28,7 @@ pipeline {
             steps {
                 echo "login and push image to the repo"
                 sh '''
-                  docker login -u $username -p $password
+                  docker login -u $myusername -p $mypassword
                   docker push 02271589/proj:$version
                   '''
             }
