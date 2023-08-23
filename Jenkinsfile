@@ -19,7 +19,7 @@ pipeline {
                 sh '''
                     cd hrapp-project
                     docker build -t 02271589/proj:$version .
-                    docker run --name projectapp -d -p 80:5000 02271589/proj:$version
+                    docker run --name myproject -d -p 80:5000 02271589/proj:$version
                 '''
             }
         }
