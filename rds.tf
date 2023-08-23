@@ -6,7 +6,6 @@ resource "aws_default_vpc" "default_vpc" {
   }
 }
 
-
 # use data source to get all avalablility zones in region
 data "aws_availability_zones" "available_zones" {}
 
@@ -26,6 +25,7 @@ resource "aws_security_group" "database_security_group" {
   name        = "database security group"
   description = "enable Postgres/PGAdmin access on port 5432"
   vpc_id      = aws_vpc.localvpc.id
+                
 
 
   ingress {
@@ -60,7 +60,7 @@ resource "aws_db_subnet_group" "database_subnet_group" {
   }
 }
 
-# create the postgre rds instance
+# create the postgres rds instance
 resource "aws_db_instance" "db_instance" {
   engine                 = var.DB-engine
   engine_version         = var.engine_version

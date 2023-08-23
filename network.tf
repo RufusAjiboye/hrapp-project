@@ -13,7 +13,6 @@ resource "aws_subnet" "subnet_public2" {
   cidr_block        = "10.0.2.0/24"
   availability_zone = "eu-west-1b"
 
-
   tags = {
     Name = "Main2"
   }
@@ -21,11 +20,6 @@ resource "aws_subnet" "subnet_public2" {
 
 resource "aws_vpc" "localvpc" {
   cidr_block       = "10.0.0.0/16"
-  instance_tenancy = "default"
-
-  tags = {
-    Name = "dvpc"
-  }
 }
 
 resource "aws_internet_gateway" "igw" {
