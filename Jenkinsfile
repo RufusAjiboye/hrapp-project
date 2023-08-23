@@ -28,7 +28,7 @@ pipeline {
             steps {
                 echo "login and push image to the repo"
                 sh '''
-                  docker login -u username -p password
+                  docker login -u $username -p $password
                   docker push 02271589/proj:$version
                   '''
             }
