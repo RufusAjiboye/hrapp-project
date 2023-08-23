@@ -19,7 +19,7 @@ pipeline {
                 sh '''
                     cd hrapp-project
                     docker build -t 02271589/proj:$version .
-                    docker run --name myprojerts -d -p 80:5000 02271589/proj:$version
+                    docker run --name myprojertss -d -p 80:5000 02271589/proj:$version
                 '''
             }
         }
@@ -38,7 +38,7 @@ pipeline {
             steps {
                 echo "This will deploy the application"
                 sh '''
-                    docker run -p 91:5000 -e POSTGRES_HOST=project.cj8fxkx2ctxo.eu-west-1.rds.amazonaws.com /
+                    docker run -p 91:5000 -e POSTGRES_HOST=project.cj8fxkx2ctxo.eu-west-1.rds.amazonaws.com
                     -e POSTGRES_USER=project -e POSTGRES_PASSWORD=password123
                     -e POSTGRES_DATABASE_NAME=postgres -e TO_ADDRESS=ruufman@yahoo.com
                     -e SOURCE_ADDRESS=ruufman@gmail.com -e AWS_REGION_NAME=eu-west-1
