@@ -3,8 +3,8 @@ pipeline {
     environment {
         ACCCESS_KEY_ID = credentials ('ACCESS_KEY_ID')
         SECRET_ACCESS_KEY = credentials('SECRET_ACCESS_KEY')
-        username = credentials ('username')
-        password = credentials ('password')
+        username = credentials ('dockerhubusername')
+        password = credentials ('dockerhubpassword')
         version = "v2"
     }
     stages {
