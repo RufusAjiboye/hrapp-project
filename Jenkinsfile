@@ -19,7 +19,7 @@ pipeline {
                 sh '''
                     cd hrapp-project
                     docker build -t 02271589/proj:$version .
-                    docker run --name mypru -d -p 80:5000 02271589/proj:$version
+                    docker run --name myprus -d -p 80:5000 02271589/proj:$version
                 '''
             }
         }
@@ -34,13 +34,13 @@ pipeline {
             }
         }
 
-        stage ('deploy app to browser') {
-            steps {
-                echo "This will deploy the application"
-                sh '''
+        // stage ('deploy app to browser') {
+        //     steps {
+        //         echo "This will deploy the application"
+        //         sh '''
                 
-            }
-        }
+        //     }
+        // }
     }
 
 
