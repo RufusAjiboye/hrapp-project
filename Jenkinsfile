@@ -33,7 +33,7 @@ pipeline {
 
         stage('Run docker image') {
             steps  { 
-                sh 'docker run --name mypr -d -p 80:5000 02271589/proj:$version'
+                sh 'docker run --name myprop -d -p 80:5000 02271589/proj:$version'
             }
         }
 
@@ -53,7 +53,7 @@ pipeline {
 
         stage ('Launch EC2 Instances') {
             steps {
-                echo "Lauch 3 EC2 instances"
+                echo "Launch 3 EC2 instances"
                 sh '''
                    $count
                    instanceType = $AWS_INSTANCE_TYPE
