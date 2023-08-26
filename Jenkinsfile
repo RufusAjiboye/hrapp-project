@@ -4,8 +4,8 @@ pipeline {
         ACCCESS_KEY_ID = credentials ('ACCESS_KEY_ID')
         SECRET_ACCESS_KEY = credentials('SECRET_ACCESS_KEY')
 
-        hubUsername = credentials ('hub-username')
-        hubPassword = credentials ('hub-password')
+        hub_username = credentials ('hub-username')
+        hub_password = credentials ('hub-password')
         version = "v3"
 
         // AWS_REGION = credentials ('AwsSecretLocation')
@@ -39,7 +39,7 @@ pipeline {
         stage ('login to the image repo') {
             steps {
                 echo "login to docker hub repo"
-                  sh'docker login -u $hubUsername -p $hubPassword'
+                  sh'docker login -u $hub_username -p $hub_password'
             }
         }
 
