@@ -33,7 +33,7 @@ pipeline {
 
         stage('Run docker image') {
             steps  { 
-                sh 'docker run --name my -d -p 80:5000 02271589/proj:$version'
+                sh 'docker run --name myli -d -p 80:5000 02271589/proj:$version'
             }
         }
 
@@ -55,6 +55,7 @@ pipeline {
             steps {
                // echo "Launch 3 EC2 instances"
                 sh '''
+                   resource "aws_instance" "appnode" 
                    $count
                    instanceType = $AWS_INSTANCE_TYPE
                    Ami = $AWS_AMI_ID
