@@ -32,7 +32,7 @@ pipeline {
 
         stage('Run docker image') {
             steps  { 
-                sh 'docker run --name mypruser -d -p 80:5000 02271589/proj:$version'
+                sh 'docker run --name mypr -d -p 80:5000 02271589/proj:$version'
             }
         }
 
