@@ -12,6 +12,7 @@ pipeline {
         AWS_INSTANCE_TYPE = credentials ('InstanceType')
         AWS_AMI_ID = credentials ('myAMI_ID')//"ami-0ed752ea0f62749af"
         AWS_KEY_NAME = credentials ('myKey')
+        count = "3"
     }
 
     stages {
@@ -54,7 +55,7 @@ pipeline {
             steps {
                 echo "Lauch 3 EC2 instances"
                 sh '''
-                   count = 3
+                   $count
                    instanceType = $AWS_INSTANCE_TYPE
                    Ami = $AWS_AMI_ID
                    Key_name = $AWS_KEY_NAME
