@@ -8,10 +8,10 @@ pipeline {
         hub_password = credentials ('hub-password')
         version = "v3"
 
-        // AWS_REGION = credentials ('AwsSecretLocation')
-        // AWS_INSTANCE_TYPE = credentials ('InstanceType')
-        // AWS_AMI_ID = credentials ('myAMI_ID')//"ami-0ed752ea0f62749af"
-        // AWS_KEY_NAME = credentials ('myKey')
+        AWS_REGION = credentials ('AwsSecretLocation')
+        AWS_INSTANCE_TYPE = credentials ('InstanceType')
+        AWS_AMI_ID = credentials ('myAMI_ID')//"ami-0ed752ea0f62749af"
+        AWS_KEY_NAME = credentials ('myKey')
     }
 
     stages {
@@ -50,18 +50,18 @@ pipeline {
             }
         }
 
-        // stage ('Launch EC2 Instances') {
-        //     steps {
-        //         echo "Lauch 3 EC2 instances"
-        //         sh '''
-        //            count = 3
-        //            instanceType = $AWS_INSTANCE_TYPE
-        //            Ami = $AWS_AMI_ID
-        //            Key_name = $AWS_KEY_NAME
-        //            instance_region = $AWS_REGION
-        //            '''
-        //     }
-        // }
+        stage ('Launch EC2 Instances') {
+            steps {
+                echo "Lauch 3 EC2 instances"
+                sh '''
+                   count = 3
+                   instanceType = $AWS_INSTANCE_TYPE
+                   Ami = $AWS_AMI_ID
+                   Key_name = $AWS_KEY_NAME
+                   instance_region = $AWS_REGION
+                   '''
+            }
+        }
 
         // stage ('Deploy hrapp to nodes') {
         //     steps {
