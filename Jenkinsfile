@@ -53,7 +53,7 @@ pipeline {
 
         stage ('Launch EC2 Instances') {
             steps {
-                echo "Launch 3 EC2 instances"
+               // echo "Launch 3 EC2 instances"
                 sh '''
                    $count
                    instanceType = $AWS_INSTANCE_TYPE
