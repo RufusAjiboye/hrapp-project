@@ -6,7 +6,7 @@ pipeline {
 
         hubUsername = credentials ('hub-username')
         hubPassword = credentials ('hub-password')
-        version = "v2"
+        version = "v3"
 
         // AWS_REGION = credentials ('AwsSecretLocation')
         // AWS_INSTANCE_TYPE = credentials ('InstanceType')
@@ -39,14 +39,14 @@ pipeline {
         stage ('login to the image repo') {
             steps {
                 echo "login to docker hub repo"
-                  'docker login -u $hubUsername -p $hubPassword'
+                  sh'docker login -u $hubUsername -p $hubPassword'
             }
         }
 
         stage ('publish image to dockerhub') {
             steps {
                 echo "Push image to the Image repo"
-                  'docker push 02271589/proj:$version'     
+                  sh'docker push 02271589/proj:$version'     
             }
         }
 
