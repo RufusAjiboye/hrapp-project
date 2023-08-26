@@ -3,10 +3,17 @@ pipeline {
     environment {
         ACCCESS_KEY_ID = credentials ('ACCESS_KEY_ID')
         SECRET_ACCESS_KEY = credentials('SECRET_ACCESS_KEY')
-        myusername = credentials ('hub-username')
-        mypassword = credentials ('hub-password')
+
+        hubUsername = credentials ('hub-username')
+        hubPassword = credentials ('hub-password')
         version = "v2"
+
+        AWS_REGION = credentials ('AwsSecretLocation')
+        AWS_INSTANCE_TYPE = credentials ('InstanceType')
+        AWS_AMI_ID = credentials ('myAMI_ID')//"ami-0ed752ea0f62749af"
+        AWS_KEY_NAME = credentials ('myKey')
     }
+
     stages {
         stage ('download the repo codebase') {
             steps {
@@ -19,32 +26,70 @@ pipeline {
                 sh '''
                     cd hrapp-project
                     docker build -t 02271589/proj:$version .
-                    docker run --name myprus -d -p 80:5000 02271589/proj:$version
                 '''
             }
         }
 
-        stage ('publish image to repo') {
-            steps {
-                echo "login and push image to the repo"
-                sh '''
-                  docker login -u $myusername -p $mypassword
-                  docker push 02271589/proj:$version
-                  '''
+        stage('Run docker image') {
+            steps  { 
+                sh 'docker run --name mypruser -d -p 80:5000 02271589/proj:$version'
             }
         }
 
-        // stage ('deploy app to browser') {
+        stage ('login to the image repo') {
+            steps {
+                echo "login to docker hub repo"
+                  'docker login -u $hubUsername -p $hubPassword'
+            }
+        }
+
+        stage ('publish image to dockerhub') {
+            steps {
+                echo "Push image to the Image repo"
+                  'docker push 02271589/proj:$version'     
+            }
+        }
+
+        stage ('Launch EC2 Instances') {
+            steps {
+                echo "Lauch 3 EC2 instances"
+                sh '''
+                   count = 3
+                   instanceType = $AWS_INSTANCE_TYPE
+                   Ami = $AWS_AMI_ID
+                   Key_name = $AWS_KEY_NAME
+                   instance_region = $AWS_REGION
+                   '''
+            }
+        }
+
+        // stage ('Deploy hrapp to nodes') {
         //     steps {
-        //         echo "This will deploy the application"
-        //         sh '''
-                
+        //         sh 'docker run 02271589/proj:v2'
         //     }
         // }
-    }
 
+        // stage ('Initialize terraform') {
+        //     steps {
+        //         echo "Terraform init"
+        //           sh ('terraform init')   
+        //     }
+        // }
 
+        // stage ('Plan terraform') {
+        //     steps {
+        //         echo "Terraform plan"
+        //           sh ('terraform plan')   
+        //     }
+        // }
 
+        // stage ('Execute terraform') {
+        //     steps {
+        //         echo "Terraform Apply"
+        //           sh ('terraform apply -auto-approve')   
+        //     }
+        // }   
+     }
 
     post {
         always {

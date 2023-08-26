@@ -24,8 +24,7 @@ resource "aws_default_subnet" "subnet_az2" {
 resource "aws_security_group" "database_security_group" {
   name        = "database security group"
   description = "enable Postgres/PGAdmin access on port 5432"
-  vpc_id      = aws_vpc.localvpc.id
-                
+  vpc_id      = var.VPC_value
 
 
   ingress {
@@ -76,4 +75,4 @@ resource "aws_db_instance" "db_instance" {
   availability_zone      = data.aws_availability_zones.available_zones.names[0]
   publicly_accessible    = true
   skip_final_snapshot    = true
-} 
+}

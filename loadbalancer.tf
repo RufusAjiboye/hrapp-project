@@ -1,9 +1,9 @@
 resource "aws_lb" "hrapp_lb" {
-  name               = "application-load-balancer"
-  internal           = false
-  load_balancer_type = "application"
-  security_groups    = [aws_security_group.myhrapp_sg.id]
-  subnets            = ["${aws_subnet.subnet_public1.id}", "${aws_subnet.subnet_public2.id}"]
+  name                       = "application-load-balancer"
+  internal                   = false
+  load_balancer_type         = "application"
+  security_groups            = [aws_security_group.myhrapp_sg.id]
+  subnets                    = ["${aws_subnet.subnet_public1.id}", "${aws_subnet.subnet_public2.id}"]
   enable_deletion_protection = false
 
   tags = {
@@ -15,7 +15,8 @@ resource "aws_lb_target_group" "hrapp_tg" {
   name     = "hrapp-target-group"
   port     = 80
   protocol = "HTTP"
-  vpc_id   = aws_vpc.localvpc.id
+  #vpc_id   = aws_vpc.localvpc.id
+  vpc_id = var.VPC_value
 }
 
 # Load balancer listening on port 80 and 443

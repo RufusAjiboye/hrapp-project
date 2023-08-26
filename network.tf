@@ -1,6 +1,6 @@
 resource "aws_subnet" "subnet_public1" {
-  vpc_id            = aws_vpc.localvpc.id
-  cidr_block        = "10.0.1.0/24"
+  vpc_id            = var.VPC_value
+  cidr_block        = "100.0.1.0/24"
   availability_zone = "eu-west-1a"
 
   tags = {
@@ -9,8 +9,8 @@ resource "aws_subnet" "subnet_public1" {
 }
 
 resource "aws_subnet" "subnet_public2" {
-  vpc_id            = aws_vpc.localvpc.id
-  cidr_block        = "10.0.2.0/24"
+  vpc_id            = var.VPC_value
+  cidr_block        = "100.0.2.0/24"
   availability_zone = "eu-west-1b"
 
   tags = {
@@ -19,11 +19,11 @@ resource "aws_subnet" "subnet_public2" {
 }
 
 resource "aws_vpc" "localvpc" {
-  cidr_block       = "10.0.0.0/16"
+  cidr_block = "10.0.0.0/16"
 }
 
 resource "aws_internet_gateway" "igw" {
-  vpc_id = aws_vpc.localvpc.id
+  vpc_id = var.VPC_value
 
   tags = {
     Name = "IGW"
@@ -32,7 +32,7 @@ resource "aws_internet_gateway" "igw" {
 }
 
 resource "aws_route_table" "awsrt" {
-  vpc_id = aws_vpc.localvpc.id
+  vpc_id = var.VPC_value
 
   tags = {
     Name = "RouteTable"

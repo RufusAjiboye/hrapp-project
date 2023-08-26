@@ -4,6 +4,12 @@ variable "ec2_ami" {
   default     = "ami-0ed752ea0f62749af"
 }
 
+variable "VPC_value" {
+  description = "This is a variable to manage the VPC"
+  type        = string
+  default     = "vpc-0de121ec0ecf8eeb6"
+}
+
 variable "ec2_key_name" {
   description = "This is a variable to manage ec2 key name"
   type        = string
@@ -13,7 +19,7 @@ variable "ec2_key_name" {
 variable "ec2_instance_type" {
   description = "This is a variable to manage ec2 instance type"
   type        = string
-  default     = "t2.medium"
+  default     = "t2.nano"
 }
 
 variable "certificate_arn" {
@@ -31,7 +37,7 @@ variable "DB-username" {
 variable "DB-password" {
   description = "This variable will manage the password for DB set up"
   type        = string
-  default = "password123"
+  default     = "password123"
 }
 
 variable "DB-name" {
