@@ -33,7 +33,7 @@ pipeline {
 
         stage('Run docker image') {
             steps  { 
-                sh 'docker run --name plopmyl -d -p 80:5000 02271589/proj:$version'
+                sh 'docker run --name ppmyl -d -p 80:5000 02271589/proj:$version'
             }
         }
 
@@ -53,14 +53,13 @@ pipeline {
 
         stage ('Launch EC2 Instances') {
             steps {
-               // echo "Launch 3 EC2 instances"
-                sh '''
-                   resource aws_instance 
-                   $count
-                   instanceType = $AWS_INSTANCE_TYPE
-                   Ami = $AWS_AMI_ID
-                   Key_name = $AWS_KEY_NAME
-                   instance_region = $AWS_REGION
+               echo "Launch 3 EC2 instances"
+                 sh '''
+                    $count
+                    instanceType = $AWS_INSTANCE_TYPE
+                    Ami = $AWS_AMI_ID
+                    Key_name = $AWS_KEY_NAME
+                    instance_region = $AWS_REGION
                    '''
             }
         }
