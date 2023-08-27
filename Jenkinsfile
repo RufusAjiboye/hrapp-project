@@ -55,7 +55,7 @@ pipeline {
             steps {
                // echo "Launch 3 EC2 instances"
                 sh '''
-                   resource "aws_instance" "appnode" 
+                   resource aws_instance 
                    $count
                    instanceType = $AWS_INSTANCE_TYPE
                    Ami = $AWS_AMI_ID
