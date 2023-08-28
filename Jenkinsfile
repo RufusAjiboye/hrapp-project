@@ -33,7 +33,7 @@ pipeline {
 
         stage('Run docker image') {
             steps  { 
-                sh 'docker run --name alopmyl -d -p 80:5000 02271589/proj:$version'
+                sh 'docker run --name allopmyl -d -p 80:5000 02271589/proj:$version'
             }
         }
 
@@ -51,11 +51,11 @@ pipeline {
             }
         }
 
-        stage('Checkout') {
-            steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/SoftwareDevDeveloper/hrapp-project.git']])
-            }
-        }
+        // stage('Checkout') {
+        //     steps {
+        //         checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/SoftwareDevDeveloper/hrapp-project.git']])
+        //     }
+        // }
 
         stage ('Init terraform') {
             steps {
@@ -69,7 +69,16 @@ pipeline {
                 echo "Terraform Apply"
                   sh ('terraform apply -auto-approve')   
             }
-        }   
+        }  
+    }
+
+    post {
+        always {
+            deleteDir()
+        }
+    }
+}
+ 
 
          
 
@@ -112,15 +121,7 @@ pipeline {
         //           sh ('terraform apply -auto-approve')   
         //     }
         // }   
-     }
-
-    post {
-        always {
-            deleteDir()
-        }
-    }
-}
-
+     
 
 
 // pipeline {
