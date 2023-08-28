@@ -33,7 +33,7 @@ pipeline {
 
         stage('Run docker image') {
             steps  { 
-                sh 'docker run --name ppomyl -d -p 80:5000 02271589/proj:$version'
+                sh 'docker run --name alppomyl -d -p 80:5000 02271589/proj:$version'
             }
         }
 
@@ -48,6 +48,12 @@ pipeline {
             steps {
                 echo "Push image to the Image repo"
                   sh'docker push 02271589/proj:$version'     
+            }
+        }
+
+        stage('Checkout') {
+            steps {
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/SoftwareDevDeveloper/hrapp-project.git']])
             }
         }
 
