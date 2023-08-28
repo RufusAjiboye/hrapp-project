@@ -33,7 +33,7 @@ pipeline {
 
         stage('Run docker image') {
             steps  { 
-                sh 'docker run --name alloopmyl -d -p 80:5000 02271589/proj:$version'
+                sh 'docker run --name allplopmyl -d -p 80:5000 02271589/proj:$version'
             }
         }
 
@@ -57,20 +57,6 @@ pipeline {
         //     }
         // }
 
-        stage ('Init terraform') {
-            steps {
-                echo "Initialise Terraform"
-                  sh ('terraform init')   
-            }
-        }
-
-        stage ('Execute terraform') {
-            steps {
-                echo "Terraform Apply"
-                  sh ('terraform apply -auto-approve')   
-            }
-        }
-
         stage ('Launch EC2 Instances') {
             steps {
                echo "Launch 3 EC2 instances"
@@ -81,6 +67,20 @@ pipeline {
                     Key_name = $AWS_KEY_NAME
                     instance_region = $AWS_REGION
                    '''
+            }
+        }
+
+        stage ('Init terraform') {
+            steps {
+                echo "Initialise Terraform"
+                sh ('terraform init')   
+            }
+        }
+
+        stage ('Execute terraform') {
+            steps {
+                echo "Terraform Apply"
+                sh ('terraform apply -auto-approve')   
             }
         }
     }
@@ -95,18 +95,32 @@ pipeline {
 
          
 
-        // stage ('Launch EC2 Instances') {
-        //     steps {
-        //        echo "Launch 3 EC2 instances"
-        //          sh '''
-        //             $count
-        //             instanceType = $AWS_INSTANCE_TYPE
-        //             Ami = $AWS_AMI_ID
-        //             Key_name = $AWS_KEY_NAME
-        //             instance_region = $AWS_REGION
-        //            '''
-        //     }
-        // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
 
         // stage ('Deploy hrapp to nodes') {
         //     steps {
