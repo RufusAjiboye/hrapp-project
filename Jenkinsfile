@@ -33,7 +33,7 @@ pipeline {
 
         stage('Run docker image') {
             steps  { 
-                sh 'docker run --name alppomyl -d -p 80:5000 02271589/proj:$version'
+                sh 'docker run --name alpomyl -d -p 80:5000 02271589/proj:$version'
             }
         }
 
@@ -54,6 +54,13 @@ pipeline {
         stage('Checkout') {
             steps {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/SoftwareDevDeveloper/hrapp-project.git']])
+            }
+        }
+
+         stage ("Terraform init") {
+            steps {
+                sh "terraform action from the parameter is --> ${action}"
+                sh ("terraform ${action} --auto-approve");
             }
         }
 
