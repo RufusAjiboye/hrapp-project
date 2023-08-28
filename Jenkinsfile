@@ -76,6 +76,13 @@ pipeline {
             }
         }
 
+        stage ('Plan terraform') {
+            steps {
+                echo "Terraform plan"
+                  sh ('terraform plan')   
+            }
+        }
+
         stage ('Execute terraform') {
             steps {
                 echo "Terraform Apply"
