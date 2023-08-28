@@ -33,7 +33,7 @@ pipeline {
 
         stage('Run docker image') {
             steps  { 
-                sh 'docker run --name pmyl -d -p 80:5000 02271589/proj:$version'
+                sh 'docker run --name ppomyl -d -p 80:5000 02271589/proj:$version'
             }
         }
 
