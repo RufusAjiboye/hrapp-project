@@ -61,10 +61,10 @@ pipeline {
             steps {
                echo "Launch EC2 instances"
                  sh '''
-                    instanceType = $AWS_INSTANCE_TYPE
-                    Ami = $AWS_AMI_ID
-                    Key_name = $AWS_KEY_NAME
-                    instance_region = $AWS_REGION
+                    AWS_INSTANCE_TYPE = $AWS_INSTANCE_TYPE
+                    AWS_AMI_ID = $AWS_AMI_ID
+                    AWS_KEY_NAME = $AWS_KEY_NAME
+                    AWS_REGION = $AWS_REGION
                    '''
             }
         }
