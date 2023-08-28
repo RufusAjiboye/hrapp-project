@@ -8,10 +8,10 @@ pipeline {
         hub_password = credentials ('hub-password')
         version = "v3"
 
-        AWS_REGION = credentials ('AwsSecretLocation')
-        AWS_INSTANCE_TYPE = credentials ('InstanceType')
-        AWS_AMI_ID = credentials ('myAMI_ID')//"ami-0ed752ea0f62749af"
-        AWS_KEY_NAME = credentials ('myKey')
+        AWS_REGION = credentials ('AWS_REGION')
+        AWS_INSTANCE_TYPE = credentials ('AWS_INSTANCE_TYPE')
+        AWS_AMI_ID = credentials ('AWS_AMI_ID')//"ami-0ed752ea0f62749af"
+        AWS_KEY_NAME = credentials ('AWS_KEY_NAME')
         count = "3"
     }
 
@@ -33,7 +33,7 @@ pipeline {
 
         stage('Run docker image') {
             steps  { 
-                sh 'docker run --name allplopmyl -d -p 80:5000 02271589/proj:$version'
+                sh 'docker run -d -p 80:5000 02271589/proj:$version'
             }
         }
 
@@ -59,7 +59,7 @@ pipeline {
 
         stage ('Launch EC2 Instances') {
             steps {
-               echo "Launch 3 EC2 instances"
+               echo "Launch EC2 instances"
                  sh '''
                     $count
                     instanceType = $AWS_INSTANCE_TYPE
