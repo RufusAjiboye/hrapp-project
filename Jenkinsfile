@@ -8,10 +8,10 @@ pipeline {
         hub_password = credentials ('hub-password')
         version = "v3"
 
-        AWS_REGION = credentials ('AWS_REGION')
-        AWS_INSTANCE_TYPE = credentials ('AWS_INSTANCE_TYPE')
-        AWS_AMI_ID = credentials ('AWS_AMI_ID')//"ami-0ed752ea0f62749af"
-        AWS_KEY_NAME = credentials ('AWS_KEY_NAME')
+        REGION = credentials ('REGION')
+        INSTANCE_TYPE = credentials ('INSTANCE_TYPE')
+        AMI_ID = credentials ('AMI_ID')//"ami-0ed752ea0f62749af"
+        KEY_NAME = credentials ('KEY_NAME')
         count = "3"
     }
 
@@ -61,10 +61,10 @@ pipeline {
             steps {
                echo "Launch EC2 instances"
                  sh '''
-                    AWS_INSTANCE_TYPE = $AWS_INSTANCE_TYPE
-                    AWS_AMI_ID = $AWS_AMI_ID
-                    AWS_KEY_NAME = $AWS_KEY_NAME
-                    AWS_REGION = $AWS_REGION
+                    INSTANCE_TYPE = $INSTANCE_TYPE
+                    AMI_ID = $AMI_ID
+                    KEY_NAME = $KEY_NAME
+                    REGION = $REGION
                    '''
             }
         }
