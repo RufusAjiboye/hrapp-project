@@ -61,7 +61,6 @@ pipeline {
             steps {
                echo "Launch EC2 instances"
                  sh '''
-                    $count
                     instanceType = $AWS_INSTANCE_TYPE
                     Ami = $AWS_AMI_ID
                     Key_name = $AWS_KEY_NAME
