@@ -57,12 +57,21 @@ pipeline {
             }
         }
 
-         stage ("Terraform init") {
+        stage ('Plan terraform') {
             steps {
-                sh "terraform action from the parameter is --> ${action}"
-                sh ("terraform ${action} --auto-approve");
+                echo "Terraform plan"
+                  sh ('terraform plan')   
             }
         }
+
+        stage ('Execute terraform') {
+            steps {
+                echo "Terraform Apply"
+                  sh ('terraform apply -auto-approve')   
+            }
+        }   
+
+         
 
         // stage ('Launch EC2 Instances') {
         //     steps {
@@ -111,3 +120,23 @@ pipeline {
         }
     }
 }
+
+
+
+// pipeline {
+//     agent any
+
+//     stages {
+//         stage('Checkout') {
+//             steps {
+//                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/SoftwareDevDeveloper/hrapp-project.git/']])
+//             }
+//         }
+//         stage ("Terraform init") {
+//             steps {
+//                 sh "terraform action from the parameter is --> ${action}"
+//                 sh ("terraform ${action} --auto-approve");
+//             }
+//         }
+//     }
+// }
