@@ -33,7 +33,7 @@ pipeline {
 
         stage('Run docker image') {
             steps  { 
-                sh 'docker run --name apomyl -d -p 80:5000 02271589/proj:$version'
+                sh 'docker run --name alopmyl -d -p 80:5000 02271589/proj:$version'
             }
         }
 
@@ -57,10 +57,10 @@ pipeline {
             }
         }
 
-        stage ('Plan terraform') {
+        stage ('Init terraform') {
             steps {
-                echo "Terraform plan"
-                  sh ('terraform plan')   
+                echo "Initialise Terraform"
+                  sh ('terraform init')   
             }
         }
 
