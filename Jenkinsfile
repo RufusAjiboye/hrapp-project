@@ -72,14 +72,14 @@ pipeline {
         stage ('Init terraform') {
             steps {
                 echo "Initialise Terraform"
-                sh ('terraform init')   
+                sh 'terraform init'
             }
         }
 
         stage ('Execute terraform') {
             steps {
                 echo "Terraform Apply"
-                sh ('terraform apply -auto-approve')   
+                sh 'terraform apply -auto-approve'
             }
         }
     }
@@ -116,7 +116,13 @@ pipeline {
 
 
 
-
+// post {
+//         always {
+//             script {
+//                 sh 'terraform destroy -auto-approve'
+//             }
+//         }
+//     }
 
 
         
