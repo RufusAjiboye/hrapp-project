@@ -69,13 +69,12 @@ pipeline {
         //     }
         // }
 
-        stage ('Init terraform') {
-            steps {
-                echo "Initialise Terraform"
-                sh 'terraform init'
-            }
-        }
-
+        // stage ('Init terraform') {
+        //     steps {
+        //         echo "Initialise Terraform"
+        //         sh 'terraform init'
+        //     }
+        // }
 
         stage ('Execute terraform') {
             steps {
