@@ -22,7 +22,7 @@ pipeline {
                 sh "git clone https://github.com/SoftwareDevDeveloper/hrapp-project.git"
             }
         }
-        
+
         stage('Build the docker image') {
             steps  {
                 sh '''
@@ -52,11 +52,11 @@ pipeline {
             }
         }
 
-        stage('Checkout') {
-            steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/SoftwareDevDeveloper/hrapp-project.git']])
-            }
-        }
+        // stage('Checkout') {
+        //     steps {
+        //         checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/SoftwareDevDeveloper/hrapp-project.git']])
+        //     }
+        // }
 
         stage ('Launch EC2 Instances') {
             steps {
@@ -97,8 +97,4 @@ pipeline {
             deleteDir()
         }
     }
-
 }
- 
-
-         
