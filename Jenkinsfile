@@ -13,22 +13,22 @@ pipeline {
 
             stage ('terraform init') {
                 steps {
-                    sh ("terraform init -reconfigure")
+                    sh ("terraform init")
                 }
             }
             
-            stage ('plan') {
-                steps {
-                    sh ("terraform plan")
-                }
-            }
+            // stage ('plan') {
+            //     steps {
+            //         sh ("terraform plan")
+            //     }
+            // }
 
-            stage ('Action') {
-                steps {
-                    echo "Terraform action is -->${action}"
-                    sh ("terraform ${action} --auto-approve")
-                }
-            }
+            // stage ('Action') {
+            //     steps {
+            //         echo "Terraform action is -->${action}"
+            //         sh ("terraform ${action} --auto-approve")
+            //     }
+            // }
         }
    }
 }
@@ -55,6 +55,23 @@ pipeline {
 
 
 
+// pipeline {
+//     agent any
+
+//     stages {
+//         stage('checkout') {
+//             steps {
+//                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/SoftwareDevDeveloper/hrapp-project.git']])
+//             }
+//         }
+        
+//         stage ("init") {
+//             steps {
+//                 sh "terraform init -reconfigure"
+//             }
+//         }
+//     }
+// }
 
 
 
