@@ -4,9 +4,9 @@ pipeline {
         ACCCESS_KEY_ID = credentials ('ACCESS_KEY_ID')
         SECRET_ACCESS_KEY = credentials('SECRET_ACCESS_KEY')
 
-        // hub_username = credentials ('hub-username')
-        // hub_password = credentials ('hub-password')
-        // version = "v3"
+        hub_username = credentials ('hub-username')
+        hub_password = credentials ('hub-password')
+        version = "v3"
 
         REGION = credentials ('REGION')
         INSTANCE_TYPE = credentials ('INSTANCE_TYPE')
@@ -15,7 +15,7 @@ pipeline {
         count = "3"
     }
 
-    // stages {
+     stages {
     //     stage ('download the repo codebase') {
     //         steps {
     //             echo "download the project config file"
@@ -82,14 +82,14 @@ pipeline {
                 sh 'terraform apply -auto-approve'
             }
         }
-}
+    }
 
     post {
         always {
             deleteDir()
         }
     }
-
+}
  
 
          
