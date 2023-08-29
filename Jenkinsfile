@@ -5,11 +5,11 @@ pipeline {
         SECRET_ACCESS_KEY = credentials('SECRET_ACCESS_KEY')
 
         stages {
-            stage ('Checkout') {
-                steps {
-                    checkout scm
-                }
-            }
+            // stage ('Checkout') {
+            //     steps {
+            //         checkout scm
+            //     }
+            // }
 
             stage ('terraform init') {
                 steps {
