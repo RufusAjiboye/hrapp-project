@@ -16,12 +16,12 @@ pipeline {
     }
 
      stages {
-    //     stage ('download the repo codebase') {
-    //         steps {
-    //             echo "download the project config file"
-    //             sh "git clone https://github.com/SoftwareDevDeveloper/hrapp-project.git"
-    //         }
-    //     }
+        stage ('download the repo codebase') {
+            steps {
+                echo "download the project config file"
+                sh "git clone https://github.com/SoftwareDevDeveloper/hrapp-project.git"
+            }
+        }
     //     stage('Build the docker image') {
     //         steps  {
     //             sh '''
@@ -84,11 +84,11 @@ pipeline {
         }
     }
 
-    // post {
-    //     always {
-    //         deleteDir()
-    //     }
-    // }
+    post {
+        always {
+            deleteDir()
+        }
+    }
 }
  
 
