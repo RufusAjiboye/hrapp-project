@@ -57,17 +57,17 @@ pipeline {
             }
         }
 
-        // stage ('Launch EC2 Instances') {
-        //     steps {
-        //        echo "Launch EC2 instances"
-        //          sh '''
-        //             INSTANCE_TYPE = $INSTANCE_TYPE
-        //             AMI_ID = $AMI_ID
-        //             KEY_NAME = $KEY_NAME
-        //             REGION = $REGION
-        //            '''
-        //     }
-        // }
+        stage ('Launch EC2 Instances') {
+            steps {
+               echo "Launch EC2 instances"
+                 sh '''
+                    INSTANCE_TYPE = $INSTANCE_TYPE
+                    AMI_ID = $AMI_ID
+                    KEY_NAME = $KEY_NAME
+                    REGION = $REGION
+                   '''
+            }
+        }
 
         stage ('Init terraform') {
             steps {
@@ -125,35 +125,13 @@ pipeline {
 //     }
 
 
-        
-
+    
         // stage ('Deploy hrapp to nodes') {
         //     steps {
         //         sh 'docker run 02271589/proj:v2'
         //     }
         // }
 
-        // stage ('Initialize terraform') {
-        //     steps {
-        //         echo "Terraform init"
-        //           sh ('terraform init')   
-        //     }
-        // }
-
-        // stage ('Plan terraform') {
-        //     steps {
-        //         echo "Terraform plan"
-        //           sh ('terraform plan')   
-        //     }
-        // }
-
-        // stage ('Execute terraform') {
-        //     steps {
-        //         echo "Terraform Apply"
-        //           sh ('terraform apply -auto-approve')   
-        //     }
-        // }   
-     
 
 
 // pipeline {
