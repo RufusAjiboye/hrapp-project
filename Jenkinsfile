@@ -8,11 +8,11 @@ pipeline {
         hub_password = credentials ('hub-password')
         version = "v3"
 
-        // REGION = credentials ('REGION')
-        // INSTANCE_TYPE = credentials ('INSTANCE_TYPE')
-        // AMI_ID = credentials ('AMI_ID')
-        // KEY_NAME = credentials ('KEY_NAME')
-        // count = "3"
+        REGION = credentials ('REGION')
+        INSTANCE_TYPE = credentials ('INSTANCE_TYPE')
+        AMI_ID = credentials ('AMI_ID')
+        KEY_NAME = credentials ('KEY_NAME')
+        count = "3"
     }
 
     stages {
@@ -70,12 +70,12 @@ pipeline {
         //     }
         // }
 
-        // stage ('Init terraform') {
-        //     steps {
-        //         echo "Initialise Terraform"
-        //         sh 'terraform init'
-        //     }
-        // }
+        stage ('Init terraform') {
+            steps {
+                echo "Initialise Terraform"
+                sh 'terraform init'
+            }
+        }
 
         // stage ('plan terraform') {
         //     steps {
