@@ -58,17 +58,17 @@ pipeline {
             }
         }
 
-        stage ('Launch EC2 Instances') {
-            steps {
-               echo "Launch EC2 instances"
-                 sh '''
-                    INSTANCE_TYPE = $INSTANCE_TYPE
-                    AMI_ID = $AMI_ID
-                    KEY_NAME = $KEY_NAME
-                    REGION = $REGION
-                   '''
-            }
-        }
+        // stage ('Launch EC2 Instances') {
+        //     steps {
+        //        echo "Launch EC2 instances"
+        //          sh '''
+        //             INSTANCE_TYPE = $INSTANCE_TYPE
+        //             AMI_ID = $AMI_ID
+        //             KEY_NAME = $KEY_NAME
+        //             REGION = $REGION
+        //            '''
+        //     }
+        // }
 
         stage ('Init terraform') {
             steps {
@@ -92,9 +92,9 @@ pipeline {
         }
     }
 
-    // post {
-    //     always {
-    //         deleteDir()
-    //     }
-    // }
+    post {
+        always {
+            deleteDir()
+        }
+    }
 }
