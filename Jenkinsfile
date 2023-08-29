@@ -10,7 +10,7 @@ pipeline {
 
         REGION = credentials ('REGION')
         INSTANCE_TYPE = credentials ('INSTANCE_TYPE')
-        AMI_ID = credentials ('AMI_ID')//"ami-0ed752ea0f62749af"
+        AMI_ID = credentials ('AMI_ID')
         KEY_NAME = credentials ('KEY_NAME')
         count = "3"
     }
@@ -57,17 +57,17 @@ pipeline {
             }
         }
 
-        // stage ('Launch EC2 Instances') {
-        //     steps {
-        //        echo "Launch EC2 instances"
-        //          sh '''
-        //             INSTANCE_TYPE = $INSTANCE_TYPE
-        //             AMI_ID = $AMI_ID
-        //             KEY_NAME = $KEY_NAME
-        //             REGION = $REGION
-        //            '''
-        //     }
-        // }
+        stage ('Launch EC2 Instances') {
+            steps {
+               echo "Launch EC2 instances"
+                 sh '''
+                    INSTANCE_TYPE = $INSTANCE_TYPE
+                    AMI_ID = $AMI_ID
+                    KEY_NAME = $KEY_NAME
+                    REGION = $REGION
+                   '''
+            }
+        }
 
         stage ('Init terraform') {
             steps {
