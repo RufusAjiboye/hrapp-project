@@ -1,111 +1,53 @@
 pipeline {
     agent any
-
     environment {
-        REGION = 'REGION'
-        INSTANCE_TYPE = 'INSTANCE_TYPE'
-        AMI_ID = 'ami-0ed752ea0f62749af'  // Replace with your desired AMI ID
-        KEY_NAME = 'KEY_NAME'  // Replace with your EC2 key pair name
-    }
+        ACCCESS_KEY_ID = credentials ('ACCESS_KEY_ID')
+        SECRET_ACCESS_KEY = credentials('SECRET_ACCESS_KEY')
 
-    stages {
-        stage('Checkout') {
-            steps {
-                checkout scm
+        stages {
+            stage ('Checkout') {
+                steps {
+                    checkout scm
+                }
             }
-        }
 
-        stage('Terraform Init') {
-            steps {
-                script {
-                    sh 'terraform init'
+            stage ('terraform init') {
+                steps {
+                    sh ("terraform init -reconfigure")
+                }
+            }
+            
+            stage ('plan') {
+                steps {
+                    sh ("terraform plan")
+                }
+            }
+
+            stage ('Action') {
+                steps {
+                    echo "Terraform action is -->${action}"
+                    sh ("terraform ${action} --auto-approve")
                 }
             }
         }
-
-        stage('Terraform Apply') {
-            steps {
-                script {
-                    sh 'terraform apply -auto-approve'
-                }
-            }
-        }
-    }
-
-    // post {
-    //     always {
-    //         script {
-    //             sh 'terraform destroy -auto-approve'
-    //         }
-    //     }
-    // }
+   }
 }
 
 
 
 
-// pipeline {
-//     agent any 
-//     environment {
-//         ACCCESS_KEY_ID = credentials ('ACCESS_KEY_ID')
-//         SECRET_ACCESS_KEY = credentials('SECRET_ACCESS_KEY')
 
 
-//         REGION = credentials ('REGION')
-//         INSTANCE_TYPE = credentials ('INSTANCE_TYPE')
-//         AMI_ID = credentials ('AMI_ID')
-//         KEY_NAME = credentials ('KEY_NAME')
-//         count = "3"
-//     }
 
-//      stages {
-//         stage ('download the repo codebase') {
-//             steps {
-//                 echo "download the project config file"
-//                 sh "git clone https://github.com/SoftwareDevDeveloper/hrapp-project.git"
-//             }
-//         }
 
-//         stage('Checkout') {
-//             steps {
-//                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/SoftwareDevDeveloper/hrapp-project.git']])
-//             }
-//         }
 
-//         stage ('Launch EC2 Instances') {
-//             steps {
-//                echo "Launch EC2 instances"
-//                  sh '''
-//                     INSTANCE_TYPE = $INSTANCE_TYPE
-//                     AMI_ID = $AMI_ID
-//                     KEY_NAME = $KEY_NAME
-//                     REGION = $REGION
-//                    '''
-//             }
-//         }
 
-//         stage ('Init terraform') {
-//             steps {
-//                 echo "Initialise Terraform"
-//                 sh 'terraform init'
-//             }
-//         }
 
-//         stage ('Execute terraform') {
-//             steps {
-//                 echo "Terraform Apply"
-//                 sh 'terraform apply -auto-approve'
-//             }
-//         }
-//     }
 
-//     post {
-//         always {
-//             deleteDir()
-//         }
-//     }
-// }
- 
+
+
+
+
 
          
 
@@ -121,6 +63,44 @@ pipeline {
 
 
 
+   
+         
+        // stage ('Deploy hrapp to nodes') {
+        //     steps {
+        //         sh 'docker run 02271589/proj:v2'
+        //     }
+        // }
+
+
+
+// pipeline {
+//     agent any
+
+//     stages {
+//         stage('Checkout') {
+//             steps {
+//                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/SoftwareDevDeveloper/hrapp-project.git/']])
+//             }
+//         }
+//         stage ("Terraform init") {
+//             steps {
+//                 sh "terraform action from the parameter is --> ${action}"
+//                 sh ("terraform ${action} --auto-approve");
+//             }
+//         }
+//     }
+// }
+
+
+ // parameters {
+    //     choice (name: "Terraform Actions", choices: ["apply", "destroy", "do nothing"], description: "This is the terraform actions")
+    // }
+
+
+
+
+
+
 
 
 
@@ -149,7 +129,7 @@ pipeline {
 
 
 // pipeline {
-//     agent any 
+//     agent any
 //     environment {
 //         ACCCESS_KEY_ID = credentials ('ACCESS_KEY_ID')
 //         SECRET_ACCESS_KEY = credentials('SECRET_ACCESS_KEY')
@@ -207,22 +187,29 @@ pipeline {
 //             }
 //         }
 
-//         // stage ('Launch EC2 Instances') {
-//         //     steps {
-//         //        echo "Launch EC2 instances"
-//         //          sh '''
-//         //             INSTANCE_TYPE = $INSTANCE_TYPE
-//         //             AMI_ID = $AMI_ID
-//         //             KEY_NAME = $KEY_NAME
-//         //             REGION = $REGION
-//         //            '''
-//         //     }
-//         // }
+//         stage ('Launch EC2 Instances') {
+//             steps {
+//                echo "Launch EC2 instances"
+//                  sh '''
+//                     INSTANCE_TYPE = $INSTANCE_TYPE
+//                     AMI_ID = $AMI_ID
+//                     KEY_NAME = $KEY_NAME
+//                     REGION = $REGION
+//                    '''
+//             }
+//         }
 
 //         stage ('Init terraform') {
 //             steps {
 //                 echo "Initialise Terraform"
 //                 sh 'terraform init'
+//             }
+//         }
+
+//         stage ('plan terraform') {
+//             steps {
+//                 echo "This stage will plan Terraform"
+//                 sh 'terraform plan'
 //             }
 //         }
 
@@ -239,6 +226,15 @@ pipeline {
 //             deleteDir()
 //         }
 //     }
+
+//     post {
+//         always {
+//             script {
+//                 sh 'terraform destroy -auto-approve'
+//             }
+//         }
+//     }
+
 // }
  
 
@@ -263,16 +259,28 @@ pipeline {
 
 
 
+         
 
 
 
-// post {
-//         always {
-//             script {
-//                 sh 'terraform destroy -auto-approve'
-//             }
-//         }
-//     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     
@@ -301,3 +309,8 @@ pipeline {
 //         }
 //     }
 // }
+
+
+ // parameters {
+    //     choice (name: "Terraform Actions", choices: ["apply", "destroy", "do nothing"], description: "This is the terraform actions")
+    // }
