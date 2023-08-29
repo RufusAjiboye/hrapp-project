@@ -1,64 +1,110 @@
 pipeline {
-    agent any 
+    agent any
+
     environment {
-        ACCCESS_KEY_ID = credentials ('ACCESS_KEY_ID')
-        SECRET_ACCESS_KEY = credentials('SECRET_ACCESS_KEY')
-
-
-        REGION = credentials ('REGION')
-        INSTANCE_TYPE = credentials ('INSTANCE_TYPE')
-        AMI_ID = credentials ('AMI_ID')
-        KEY_NAME = credentials ('KEY_NAME')
-        count = "3"
+        REGION = 'REGION'
+        INSTANCE_TYPE = 'INSTANCE_TYPE'
+        AMI_ID = 'ami-0ed752ea0f62749af'  // Replace with your desired AMI ID
+        KEY_NAME = 'KEY_NAME'  // Replace with your EC2 key pair name
     }
 
-     stages {
-        stage ('download the repo codebase') {
-            steps {
-                echo "download the project config file"
-                sh "git clone https://github.com/SoftwareDevDeveloper/hrapp-project.git"
-            }
-        }
-
+    stages {
         stage('Checkout') {
             steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/SoftwareDevDeveloper/hrapp-project.git']])
+                checkout scm
             }
         }
 
-        stage ('Launch EC2 Instances') {
+        stage('Terraform Init') {
             steps {
-               echo "Launch EC2 instances"
-                 sh '''
-                    INSTANCE_TYPE = $INSTANCE_TYPE
-                    AMI_ID = $AMI_ID
-                    KEY_NAME = $KEY_NAME
-                    REGION = $REGION
-                   '''
+                script {
+                    sh 'terraform init'
+                }
             }
         }
 
-        stage ('Init terraform') {
+        stage('Terraform Apply') {
             steps {
-                echo "Initialise Terraform"
-                sh 'terraform init'
-            }
-        }
-
-        stage ('Execute terraform') {
-            steps {
-                echo "Terraform Apply"
-                sh 'terraform apply -auto-approve'
+                script {
+                    sh 'terraform apply -auto-approve'
+                }
             }
         }
     }
 
-    post {
-        always {
-            deleteDir()
-        }
-    }
+    // post {
+    //     always {
+    //         script {
+    //             sh 'terraform destroy -auto-approve'
+    //         }
+    //     }
+    // }
 }
+
+
+
+
+// pipeline {
+//     agent any 
+//     environment {
+//         ACCCESS_KEY_ID = credentials ('ACCESS_KEY_ID')
+//         SECRET_ACCESS_KEY = credentials('SECRET_ACCESS_KEY')
+
+
+//         REGION = credentials ('REGION')
+//         INSTANCE_TYPE = credentials ('INSTANCE_TYPE')
+//         AMI_ID = credentials ('AMI_ID')
+//         KEY_NAME = credentials ('KEY_NAME')
+//         count = "3"
+//     }
+
+//      stages {
+//         stage ('download the repo codebase') {
+//             steps {
+//                 echo "download the project config file"
+//                 sh "git clone https://github.com/SoftwareDevDeveloper/hrapp-project.git"
+//             }
+//         }
+
+//         stage('Checkout') {
+//             steps {
+//                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/SoftwareDevDeveloper/hrapp-project.git']])
+//             }
+//         }
+
+//         stage ('Launch EC2 Instances') {
+//             steps {
+//                echo "Launch EC2 instances"
+//                  sh '''
+//                     INSTANCE_TYPE = $INSTANCE_TYPE
+//                     AMI_ID = $AMI_ID
+//                     KEY_NAME = $KEY_NAME
+//                     REGION = $REGION
+//                    '''
+//             }
+//         }
+
+//         stage ('Init terraform') {
+//             steps {
+//                 echo "Initialise Terraform"
+//                 sh 'terraform init'
+//             }
+//         }
+
+//         stage ('Execute terraform') {
+//             steps {
+//                 echo "Terraform Apply"
+//                 sh 'terraform apply -auto-approve'
+//             }
+//         }
+//     }
+
+//     post {
+//         always {
+//             deleteDir()
+//         }
+//     }
+// }
  
 
          
