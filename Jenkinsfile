@@ -23,40 +23,40 @@ pipeline {
             }
         }
 
-        stage('Build the docker image') {
-            steps  {
-                sh '''
-                    cd hrapp-project
-                    docker build -t 02271589/proj:$version .
-                '''
-            }
-        }
+        // stage('Build the docker image') {
+        //     steps  {
+        //         sh '''
+        //             cd hrapp-project
+        //             docker build -t 02271589/proj:$version .
+        //         '''
+        //     }
+        // }
 
-        stage('Run docker image') {
-            steps  { 
-                sh 'docker run -d -p 80:5000 02271589/proj:$version'
-            }
-        }
+        // stage('Run docker image') {
+        //     steps  { 
+        //         sh 'docker run -d -p 80:5000 02271589/proj:$version'
+        //     }
+        // }
 
-        stage ('login to the image repo') {
-            steps {
-                echo "login to docker hub repo"
-                  sh'docker login -u $hub_username -p $hub_password'
-            }
-        }
+        // stage ('login to the image repo') {
+        //     steps {
+        //         echo "login to docker hub repo"
+        //           sh'docker login -u $hub_username -p $hub_password'
+        //     }
+        // }
 
-        stage ('publish image to dockerhub') {
-            steps {
-                echo "Push image to the Image repo"
-                  sh'docker push 02271589/proj:$version'     
-            }
-        }
+        // stage ('publish image to dockerhub') {
+        //     steps {
+        //         echo "Push image to the Image repo"
+        //           sh'docker push 02271589/proj:$version'     
+        //     }
+        // }
 
-        stage('Checkout') {
-            steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/SoftwareDevDeveloper/hrapp-project.git']])
-            }
-        }
+        // stage('Checkout') {
+        //     steps {
+        //         checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/SoftwareDevDeveloper/hrapp-project.git']])
+        //     }
+        // }
 
         stage ('Launch EC2 Instances') {
             steps {
