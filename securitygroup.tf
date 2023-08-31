@@ -1,7 +1,7 @@
 resource "aws_security_group" "myhrapp_sg" {
   name        = "hrapp_security_group"
   description = "Allow SSH and HTTP Connection"
-  vpc_id      = var.VPC_value
+  vpc_id      = aws_vpc.main.id
 
   ingress {
     description = "Allow inbound and outbound connection"
@@ -15,6 +15,14 @@ resource "aws_security_group" "myhrapp_sg" {
     description = "Allow inbound and outbound connection"
     from_port   = 80
     to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "Allow SSH inbound and outbound connection"
+    from_port   = 22
+    to_port     = 22
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }

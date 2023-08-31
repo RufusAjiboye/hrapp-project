@@ -1,9 +1,12 @@
 resource "aws_instance" "appnode" {
 
-  count         = 3
+  count         = 2
   ami           = var.ec2_ami
   instance_type = var.ec2_instance_type
   key_name      = var.ec2_key_name
+  subnet_id = aws_subnet.subnet_public1.id
+  vpc_security_group_ids = [aws_security_group.myhrapp_sg.id] 
+  associate_public_ip_address = true
 
   tags = {
     Name = "HrApp_Server"
@@ -26,31 +29,31 @@ resource "aws_instance" "appnode" {
 
 
 
+# resource "aws_instance" "appnode" {
 
-// pipeline {
-//     agent any
+#   count         = 3
+#   ami           = var.ec2_ami
+#   instance_type = var.ec2_instance_type
+#   key_name      = var.ec2_key_name
 
-//     stages {
-//         stage('Checkout') {
-//             steps {
-//                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/SoftwareDevDeveloper/hrapp-project.git/']])
-//             }
-//         }
-//         stage ("Terraform init") {
-//             steps {
-//                 sh "terraform action from the parameter is --> ${action}"
-//                 sh ("terraform ${action} --auto-approve");
-//             }
-//         }
-//     }
-// }
+#   tags = {
+#     Name = "HrApp_Server"
+#   }
+# }
 
 
 
-# post {
-#         always {
-#             script {
-#                 sh 'terraform destroy -auto-approve'
-#             }
-#         }
-#     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
