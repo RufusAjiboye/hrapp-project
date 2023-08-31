@@ -73,7 +73,9 @@ pipeline {
         stage ('Init terraform') {
             steps {
                 echo "Initialise Terraform"
+                withCredentials([string(credentialsId: 'ACCESS_KEY_ID', variable: 'ACCESS_KEY_ID'), string(credentialsId: 'SECRET_ACCESS_KEY', variable: 'SECRET_ACCESS_KEY')]) {
                 sh 'terraform init'
+               }
             }
         }
 
