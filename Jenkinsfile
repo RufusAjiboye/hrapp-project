@@ -8,11 +8,11 @@ pipeline {
         hub_password = credentials ('hub-password')
         version = "v3"
 
-        REGION = credentials ('REGION')
-        INSTANCE_TYPE = credentials ('INSTANCE_TYPE')
-        AMI_ID = credentials ('AMI_ID')
-        KEY_NAME = credentials ('KEY_NAME')
-        count = "3"
+        // REGION = credentials ('REGION')
+        // INSTANCE_TYPE = credentials ('INSTANCE_TYPE')
+        // AMI_ID = credentials ('AMI_ID')
+        // KEY_NAME = credentials ('KEY_NAME')
+        // count = "3"
     }
 
     stages {
@@ -23,76 +23,76 @@ pipeline {
             }
         }
 
-        // stage('Build the docker image') {
-        //     steps  {
-        //         sh '''
-        //             cd hrapp-project
-        //             docker build -t 02271589/proj:$version .
-        //         '''
-        //     }
-        // }
-
-        // stage('Run docker image') {
-        //     steps  { 
-        //         sh 'docker run -d -p 80:5000 02271589/proj:$version'
-        //     }
-        // }
-
-        // stage ('login to the image repo') {
-        //     steps {
-        //         echo "login to docker hub repo"
-        //           sh'docker login -u $hub_username -p $hub_password'
-        //     }
-        // }
-
-        // stage ('publish image to dockerhub') {
-        //     steps {
-        //         echo "Push image to the Image repo"
-        //           sh'docker push 02271589/proj:$version'     
-        //     }
-        // }
-
-        // stage('Checkout') {
-        //     steps {
-        //         checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/SoftwareDevDeveloper/hrapp-project.git']])
-        //     }
-        // }
-
-        stage ('Launch EC2 Instances') {
-            steps {
-               echo "Launch EC2 instances"
-                //  sh '''
-                //     INSTANCE_TYPE = $INSTANCE_TYPE
-                //     AMI_ID = $AMI_ID
-                //     KEY_NAME = $KEY_NAME
-                //     REGION = $REGION
-                //    '''
+        stage('Build the docker image') {
+            steps  {
+                sh '''
+                    cd hrapp-project
+                    docker build -t 02271589/proj:$version .
+                '''
             }
         }
 
-        stage ('Init terraform') {
-            steps {
-                echo "Initialise Terraform"
-                withCredentials([string(credentialsId: 'ACCESS_KEY_ID', variable: 'ACCESS_KEY_ID'), string(credentialsId: 'SECRET_ACCESS_KEY', variable: 'SECRET_ACCESS_KEY')]) {
-                sh 'aws_access_key_id=$ACCESS_KEY_ID aws_secret_access_key=$SECRET_ACCESS_KEY terraform init'
-               }
+        stage('Run docker image') {
+            steps  { 
+                sh 'docker run -d -p 80:5000 02271589/proj:$version'
             }
         }
 
-        stage ('plan terraform') {
+        stage ('login to the image repo') {
             steps {
-                echo "This will execute plan Terraform"
-                sh 'terraform plan'
+                echo "login to docker hub repo"
+                  sh'docker login -u $hub_username -p $hub_password'
             }
         }
 
-        stage ('Execute terraform') {
+        stage ('publish image to dockerhub') {
             steps {
-                echo "Terraform Apply"
-                sh 'terraform apply -auto-approve'
+                echo "Push image to the Image repo"
+                  sh'docker push 02271589/proj:$version'     
             }
         }
-    }
+
+    //     stage('Checkout') {
+    //         steps {
+    //             checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/SoftwareDevDeveloper/hrapp-project.git']])
+    //         }
+    //     }
+
+    //     stage ('Launch EC2 Instances') {
+    //         steps {
+    //            echo "Launch EC2 instances"
+    //             //  sh '''
+    //             //     INSTANCE_TYPE = $INSTANCE_TYPE
+    //             //     AMI_ID = $AMI_ID
+    //             //     KEY_NAME = $KEY_NAME
+    //             //     REGION = $REGION
+    //             //    '''
+    //         }
+    //     }
+
+    //     stage ('Init terraform') {
+    //         steps {
+    //             echo "Initialise Terraform"
+    //             withCredentials([string(credentialsId: 'ACCESS_KEY_ID', variable: 'ACCESS_KEY_ID'), string(credentialsId: 'SECRET_ACCESS_KEY', variable: 'SECRET_ACCESS_KEY')]) {
+    //             sh 'aws_access_key_id=$ACCESS_KEY_ID aws_secret_access_key=$SECRET_ACCESS_KEY terraform init'
+    //            }
+    //         }
+    //     }
+
+    //     stage ('plan terraform') {
+    //         steps {
+    //             echo "This will execute plan Terraform"
+    //             sh 'terraform plan'
+    //         }
+    //     }
+
+    //     stage ('Execute terraform') {
+    //         steps {
+    //             echo "Terraform Apply"
+    //             sh 'terraform apply -auto-approve'
+    //         }
+    //     }
+    // }
 
     post {
         always {
