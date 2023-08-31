@@ -16,6 +16,10 @@
        name: httpd
        state: latest
 
+
+
+
+
    - name: Provisioning a new EC2 Instance
      yum:
         keypair: test100
