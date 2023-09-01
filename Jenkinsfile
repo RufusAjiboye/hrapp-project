@@ -7,6 +7,7 @@ pipeline {
         hub_username = credentials ('hub-username')
         hub_password = credentials ('hub-password')
         version = "v3"
+    }
 
     stages {
         stage ('download the repo codebase') {
@@ -44,6 +45,8 @@ pipeline {
                   sh'docker push 02271589/proj:$version'     
             }
         }
+
+        
     }
 
     post {
@@ -90,26 +93,21 @@ pipeline {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-         // REGION = credentials ('region')
+// REGION = credentials ('region')
         // INSTANCE_TYPE = credentials ('InstanceType')
         // AMI_ID = credentials ('myKey')
         // KEY_NAME = credentials ('myAMI_ID')
         // count = "3"
-    }
 
-        // stage('Checkout') {
+
+
+
+        
+
+
+
+
+// stage('Checkout') {
         //     steps {
         //         checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/SoftwareDevDeveloper/hrapp-project.git']])
         //     }
