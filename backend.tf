@@ -12,17 +12,8 @@ terraform {
     region = "eu-west-1"
   }
 
-  #required_version = ">= 1.2.0"
+  required_version = ">= 1.2.0"
 }
-
-# data "terraform_remote_state" "network" {
-#   backend = "s3"
-#   config = {
-#     bucket = "techbleats-terraform-state-files"
-#     key    = "hrapp/terraform.tfstate"
-#     region = "eu-west-1"
-#   }
-# }
 
 provider "aws" {
   region = "eu-west-1"

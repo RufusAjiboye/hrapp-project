@@ -44,14 +44,20 @@ pipeline {
                 echo "Push image to the Image repo"
                   sh'docker push 02271589/proj:$version'     
             }
-        }
-
-        
+        }  
     }
 
     post {
         always {
             deleteDir()
+        }
+
+         success {
+            echo 'Build is successful'
+        }
+
+        failure {
+            echo 'This has failed'
         }
     }
 }
