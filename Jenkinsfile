@@ -52,11 +52,11 @@ pipeline {
             }
         }
 
-        stage('Checkout') {
-            steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/SoftwareDevDeveloper/hrapp-project.git']])
-            }
-        }
+        // stage('Checkout') {
+        //     steps {
+        //         checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/SoftwareDevDeveloper/hrapp-project.git']])
+        //     }
+        // }
 
         stage ('Launch EC2 Instances') {
             steps {
@@ -73,9 +73,9 @@ pipeline {
         stage ('Init terraform') {
             steps {
                 echo "Initialise Terraform"
-                withCredentials([string(credentialsId: 'ACCESS_KEY_ID', variable: 'ACCESS_KEY_ID'), string(credentialsId: 'SECRET_ACCESS_KEY', variable: 'SECRET_ACCESS_KEY')]) {
-                sh 'aws_access_key_id=$ACCESS_KEY_ID aws_secret_access_key=$SECRET_ACCESS_KEY terraform init'
-               }
+            //     withCredentials([string(credentialsId: 'ACCESS_KEY_ID', variable: 'ACCESS_KEY_ID'), string(credentialsId: 'SECRET_ACCESS_KEY', variable: 'SECRET_ACCESS_KEY')]) {
+            //     sh 'aws_access_key_id=$ACCESS_KEY_ID aws_secret_access_key=$SECRET_ACCESS_KEY terraform init'
+            //    }
             }
         }
 
