@@ -58,41 +58,41 @@ pipeline {
         //     }
         // }
 
-        stage ('Launch EC2 Instances') {
-            steps {
-               echo "Launch EC2 instances"
-                 sh '''
-                    INSTANCE_TYPE = $INSTANCE_TYPE
-                    AMI_ID = $AMI_ID
-                    KEY_NAME = $KEY_NAME
-                    REGION = $REGION
-                   '''
-            }
-        }
+        // stage ('Launch EC2 Instances') {
+        //     steps {
+        //        echo "Launch EC2 instances"
+        //          sh '''
+        //             INSTANCE_TYPE = $INSTANCE_TYPE
+        //             AMI_ID = $AMI_ID
+        //             KEY_NAME = $KEY_NAME
+        //             REGION = $REGION
+        //            '''
+        //     }
+        // }
 
-        stage ('Init terraform') {
-            steps {
-                echo "Initialise Terraform"
+        // stage ('Init terraform') {
+        //     steps {
+        //         echo "Initialise Terraform"
             //     withCredentials([string(credentialsId: 'ACCESS_KEY_ID', variable: 'ACCESS_KEY_ID'), string(credentialsId: 'SECRET_ACCESS_KEY', variable: 'SECRET_ACCESS_KEY')]) {
             //     sh 'aws_access_key_id=$ACCESS_KEY_ID aws_secret_access_key=$SECRET_ACCESS_KEY terraform init'
             //    }
-            }
-        }
+        //     }
+        // }
 
-        stage ('plan terraform') {
-            steps {
-                echo "This will execute plan Terraform"
-                sh 'terraform plan'
-            }
-        }
+    //     stage ('plan terraform') {
+    //         steps {
+    //             echo "This will execute plan Terraform"
+    //             sh 'terraform plan'
+    //         }
+    //     }
 
-        stage ('Execute terraform') {
-            steps {
-                echo "Terraform Apply"
-                sh 'terraform apply -auto-approve'
-            }
-        }
-    }
+    //     stage ('Execute terraform') {
+    //         steps {
+    //             echo "Terraform Apply"
+    //             sh 'terraform apply -auto-approve'
+    //         }
+    //     }
+    // }
 
     post {
         always {
