@@ -8,10 +8,10 @@ pipeline {
         hub_password = credentials ('hub-password')
         version = "v3"
 
-        REGION = credentials ('REGION')
-        INSTANCE_TYPE = credentials ('INSTANCE_TYPE')
-        AMI_ID = credentials ('AMI_ID')
-        KEY_NAME = credentials ('KEY_NAME')
+        REGION = credentials ('region')
+        INSTANCE_TYPE = credentials ('InstanceType')
+        AMI_ID = credentials ('myKey')
+        KEY_NAME = credentials ('myAMI_ID')
         count = "3"
     }
 
@@ -58,17 +58,17 @@ pipeline {
             }
         }
 
-        // stage ('Launch EC2 Instances') {
-        //     steps {
-        //        echo "Launch EC2 instances"
-        //          sh '''
-        //             INSTANCE_TYPE = $INSTANCE_TYPE
-        //             AMI_ID = $AMI_ID
-        //             KEY_NAME = $KEY_NAME
-        //             REGION = $REGION
-        //            '''
-        //     }
-        // }
+        stage ('Launch EC2 Instances') {
+            steps {
+               echo "Launch EC2 instances"
+                 sh '''
+                    INSTANCE_TYPE = $INSTANCE_TYPE
+                    AMI_ID = $AMI_ID
+                    KEY_NAME = $KEY_NAME
+                    REGION = $REGION
+                   '''
+            }
+        }
 
         stage ('Init terraform') {
             steps {

@@ -12,7 +12,7 @@ terraform {
     region = "eu-west-1"
   }
 
-  required_version = ">= 1.2.0"
+  #required_version = ">= 1.2.0"
 }
 
 # data "terraform_remote_state" "network" {
