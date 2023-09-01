@@ -8,13 +8,6 @@ pipeline {
         hub_password = credentials ('hub-password')
         version = "v3"
 
-        REGION = credentials ('region')
-        INSTANCE_TYPE = credentials ('InstanceType')
-        AMI_ID = credentials ('myKey')
-        KEY_NAME = credentials ('myAMI_ID')
-        count = "3"
-    }
-
     stages {
         stage ('download the repo codebase') {
             steps {
@@ -51,6 +44,70 @@ pipeline {
                   sh'docker push 02271589/proj:$version'     
             }
         }
+    }
+
+    post {
+        always {
+            deleteDir()
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+         // REGION = credentials ('region')
+        // INSTANCE_TYPE = credentials ('InstanceType')
+        // AMI_ID = credentials ('myKey')
+        // KEY_NAME = credentials ('myAMI_ID')
+        // count = "3"
+    }
 
         // stage('Checkout') {
         //     steps {
@@ -92,11 +149,3 @@ pipeline {
     //             sh 'terraform apply -auto-approve'
     //         }
     //     }
-    }
-
-    post {
-        always {
-            deleteDir()
-        }
-    }
-}
