@@ -5,7 +5,6 @@
      yum:
       name: docker
       state: latest
-      state: started
 
   #  - name: Add docker user to a super user
   #      command: usermod -aG docker ec2-user 
