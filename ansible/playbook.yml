@@ -7,18 +7,25 @@
       state: latest
       state: started
 
-   - name: Add docker user to a super user
-       command: usermod -aG docker ec2-user 
+  #  - name: Add docker user to a super user
+  #      command: usermod -aG docker ec2-user 
 
-   - name: restart docker after adding the user
-     service:
-       name: docker
-       state: restarted
+  #  - name: restart docker after adding the user
+  #    service:
+  #      name: docker
+  #      state: restarted
 
    - name: install git packages
      yum:
        name: git
        state: latest
+
+  #  - name: install prometheus monitoring tool
+  #    yum:
+  #      name: prometheus
+  #      state: latest
+  #      extract file: 
+
 
 
 
