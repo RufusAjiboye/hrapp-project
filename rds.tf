@@ -45,9 +45,9 @@ resource "aws_db_instance" "db_instance" {
   engine_version         = var.engine_version
   multi_az               = false
   identifier             = var.identifier
-  username               = var.DB-username
-  password               = var.DB-password
-  db_name                = var.DB-name
+  username               = project
+  password               = "password123"
+  db_name                = "HR_Database"
   instance_class         = var.DB-instance_class
   allocated_storage      = 200
   db_subnet_group_name   = aws_db_subnet_group.database_subnet_group.id

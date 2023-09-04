@@ -28,24 +28,6 @@ variable "certificate_arn" {
   default     = "arn:aws:acm:eu-west-1:622658514249:certificate/ca534fd3-96a8-494a-b182-6b71bad9696f"
 }
 
-variable "DB-username" {
-  description = "This variable will manage the username for DB set up"
-  type        = string
-  default     = "project"
-}
-
-variable "DB-password" {
-  description = "This variable will manage the password for DB set up"
-  type        = string
-  default     = "password123"
-}
-
-variable "DB-name" {
-  description = "This variable will manage the name of the DB set up"
-  type        = string
-  default     = "HR_Database"
-}
-
 variable "DB-engine" {
   description = "This variable will manage the name of the DB engine"
   type        = string
@@ -71,7 +53,16 @@ variable "identifier" {
 }
 
 
+# route:
+#   receiver: 'slack'
 
+# receivers:
+#   - name: 'slack'
+#     slack_configs:
+#           - send_resolved: true
+#             username: 'ruufman'
+#             channel: 'sapphire-masterclass'
+#             api_url: 'tech-trainingteam.slack.com'
 
 
 
