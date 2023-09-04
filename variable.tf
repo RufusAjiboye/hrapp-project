@@ -52,18 +52,18 @@ variable "identifier" {
   default     = "hrapp-database"
 }
 
-variable "default_tags" {
-  description = "This variable is declared here to manage ec2 tags"
-  type        = map(any)
-  default = {
-    "Name" = "Development Environment"
-    "Dept"        = "development"
-    "can destroy" = "yes"
-  }
-}
+# variable "default_tags" {
+#   description = "This variable is declared here to manage ec2 tags"
+#   type        = map(any)
+#   default = {
+#     "Name" = "Development Environment"
+#     "Dept"        = "development"
+#     "can destroy" = "yes"
+#   }
+# }
 
-variable "bucket" {}
-variable "key" {}
+# variable "bucket" {}
+# variable "key" {}
 
 
 # route:

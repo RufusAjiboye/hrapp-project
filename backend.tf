@@ -10,8 +10,8 @@ terraform {
   backend "s3" {
     # bucket = "techbleats-terraform-state-files"
     # key    = "hrapp/terraform.tfstate"
-    bucket = var.bucket
-    key = var.key
+    # bucket = var.bucket
+    # key = var.key
     region = "eu-west-1"
   }
 
