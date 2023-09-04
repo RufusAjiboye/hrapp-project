@@ -52,6 +52,9 @@ variable "identifier" {
   default     = "hrapp-database"
 }
 
+variable "bucket" {}
+variable "key" {}
+
 
 # route:
 #   receiver: 'slack'
