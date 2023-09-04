@@ -17,6 +17,23 @@ pipeline {
             }
         }
 
+        stage ('terraform init') {
+            steps {
+                sh '''
+                cd backend.tf
+                terraform init
+                '''
+            }
+        }
+
+         stage ('terraform apply') {
+            steps {
+                sh '''
+                terraform apply -auto-approve
+                '''
+            }
+        }
+
         stage('Build the docker image') {
             steps  {
                 sh '''

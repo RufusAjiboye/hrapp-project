@@ -45,7 +45,7 @@ resource "aws_db_instance" "db_instance" {
   engine_version         = var.engine_version
   multi_az               = false
   identifier             = var.identifier
-  username               = project
+  username               = "project"
   password               = "password123"
   db_name                = "HR_Database"
   instance_class         = var.DB-instance_class
