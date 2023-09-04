@@ -52,8 +52,8 @@ variable "identifier" {
   default     = "hrapp-database"
 }
 
-variable "bucket" {}
-variable "key" {}
+# variable "bucket" {}
+# variable "key" {}
 
 
 # route:
