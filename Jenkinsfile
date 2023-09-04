@@ -17,22 +17,22 @@ pipeline {
             }
         }
 
-        stage ('terraform init') {
-            steps {
-                sh '''
-                terraform init --backend-config=../env/backend.tfvars
-                '''
-            }
-        }
+        // stage ('terraform init') {
+        //     steps {
+        //         sh '''
+        //         terraform init --backend-config=../env/backend.tfvars
+        //         '''
+        //     }
+        // }
 
 
-         stage ('terraform apply') {
-            steps {
-                sh '''
-                terraform apply --var-file ../env/backend.tfvars --var-file ../env/ec2.tfvars --auto-approve
-                '''
-            }
-        }
+        //  stage ('terraform apply') {
+        //     steps {
+        //         sh '''
+        //         terraform apply --var-file ../env/backend.tfvars --var-file ../env/ec2.tfvars --auto-approve
+        //         '''
+        //     }
+        // }
 
         stage('Build the docker image') {
             steps  {
