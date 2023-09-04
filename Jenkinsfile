@@ -20,7 +20,6 @@ pipeline {
         stage ('terraform init') {
             steps {
                 sh '''
-                cd backend.tf
                 terraform init
                 '''
             }
