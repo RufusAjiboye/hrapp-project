@@ -29,7 +29,8 @@ pipeline {
          stage ('terraform apply') {
             steps {
                 sh '''
-                terraform apply -auto-approve
+                terraform apply --var-file ../env/backend.tfvars 
+                --var-file ../env/backend.tfvars -auto-approve
                 '''
             }
         }
