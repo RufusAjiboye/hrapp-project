@@ -33,11 +33,11 @@
         command: docker run -name new app -d -p 
 
     - name: Ensure docker is running
-      docker-container:
+      container:
         name: my_container
         state: started
         image: 02271589/proj:v6
-      ports: 5000:5000
+        ports: 5000:5000
 
 
 
