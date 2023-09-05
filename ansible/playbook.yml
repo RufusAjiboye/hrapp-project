@@ -24,19 +24,14 @@
           name: docker
           state: restarted
       
-    - name: Execute docker run
+    - name: Create docker container
       service:
-        name: log into the docker registry
-        username: ruufman@gmail.com
-        password: var.docker-password
-        ports: 5000:5000 
-
-    - name: ensure docker is running
-      service:
-        name: my_container
-        state: started
+        name: hrpp_container
         image: 02271589/proj:v6
-        ports: 5000:5000
+        stare: started
+        ports:
+         - 5000:5000
+         detach: true
 
 
 
