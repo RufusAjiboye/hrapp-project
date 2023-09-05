@@ -37,7 +37,6 @@
         name: my_container
         state: started
         image: 02271589/proj:v6
-        pull = true
       ports: 5000:5000
 
 
