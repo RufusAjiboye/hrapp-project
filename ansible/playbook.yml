@@ -24,20 +24,21 @@
           name: docker
           state: restarted
       
-    - name: Login to docker hub registry
+    - name: Execute docker run
       service:
         name: log into the docker registry
         username: ruufman@gmail.com
         password: var.docker-password
         ports: 5000:5000 
-        command: docker run -name new app -d -p 
+        # command: docker run -name new app -d -p 
 
-    - name: Ensure docker is running
-      container:
+    - name: ensure docker is running
+      docker-container:
         name: my_container
         state: started
         image: 02271589/proj:v6
-        ports: 5000:5000
+        pull = true
+      ports: 5000:5000
 
 
 
