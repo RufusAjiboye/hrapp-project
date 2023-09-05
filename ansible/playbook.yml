@@ -33,7 +33,7 @@
         # command: docker run -name new app -d -p 
 
     - name: ensure docker is running
-      docker-container:
+      service:
         name: my_container
         state: started
         image: 02271589/proj:v6
