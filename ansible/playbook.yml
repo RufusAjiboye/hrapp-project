@@ -27,13 +27,9 @@
     - name: execute docker run
       service:
           name: docker
-          command: docker run -name new app -d -p 5000:5000 hrapp:v1
+          command: docker run -name new app -d -p 5000:5000 02271589/proj:v6
 
-    # - name: install git packages
-    #   yum:
-    #     name: git
-    #     state: latest
-
+  
 
 
 
