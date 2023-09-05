@@ -30,7 +30,6 @@
         username: ruufman@gmail.com
         password: var.docker-password
         ports: 5000:5000 
-        # command: docker run -name new app -d -p 
 
     - name: ensure docker is running
       service:
