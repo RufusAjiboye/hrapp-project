@@ -1,7 +1,7 @@
 - hosts: webservers
   become: yes
   tasks:
-    - name: install git packages
+    - name: Install git packages
       yum:
         name: git
         state: latest
@@ -11,7 +11,7 @@
         path: workspace/hrapp
         state: directory
 
-    - name: install docker
+    - name: Install docker
       yum:
         name: docker
         state: latest
@@ -19,15 +19,28 @@
     - name: Add docker user to a super user
       command: usermod -aG docker ec2-user 
 
-    - name: restart docker after adding the user
+    - name: Restart docker after adding the user
       service:
           name: docker
           state: restarted
       
-    - name: execute docker run
+    - name: Login to docker hub registry
       service:
-          name: docker
-          command: docker run -name new app -d -p 5000:5000 02271589/proj:v6
+        name: log into the docker registry
+        username: ruufman@gmail.com
+        password: var.docker-password
+        ports: 5000:5000 
+        command: docker run -name new app -d -p 
+
+    - name: Ensure docker is running
+      docker-container:
+        name: my_container
+        state: started
+        image: 02271589/proj:v6
+        pull = true
+      ports: 5000:5000
+
+
 
   
 
