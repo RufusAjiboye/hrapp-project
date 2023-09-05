@@ -19,7 +19,7 @@ variable "ec2_key_name" {
 variable "ec2_instance_type" {
   description = "This is a variable to manage ec2 instance type"
   type        = string
-  default     = "t2.nano"
+  default     = "t2.micro"
 }
 
 variable "certificate_arn" {
