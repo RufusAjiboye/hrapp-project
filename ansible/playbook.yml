@@ -1,6 +1,11 @@
 - hosts: webservers
   become: yes
   tasks:
+    - name: install git packages
+      yum:
+        name: git
+        state: latest
+        
     - name: Create a directory if it doesn't exist
       file:
         path: workspace/hrapp
@@ -24,10 +29,10 @@
           name: docker
           command: docker run -name new app -d -p 5000:5000 hrapp:v1
 
-    - name: install git packages
-      yum:
-        name: git
-        state: latest
+    # - name: install git packages
+    #   yum:
+    #     name: git
+    #     state: latest
 
 
 
