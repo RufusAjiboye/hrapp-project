@@ -1,39 +1,33 @@
 - hosts: webservers
   become: yes
   tasks:
+    - name: Create a directory if it doesn't exist
+      file:
+        path: workspace/hrapp
+        state: directory
 
-  - name: Create a directory if it doesn't exist
-    file:
-      path: workspace/hrapp
-      state: directory
+    - name: install docker
+      yum:
+        name: docker
+        state: latest
 
+    - name: Add docker user to a super user
+      command: usermod -aG docker ec2-user 
 
-  - name: install docker
-     yum:
-      name: docker
-      state: latest
-
-
-  - name: Add docker user to a super user
-       command: usermod -aG docker ec2-user 
-
-
-  - name: restart docker after adding the user
-     service:
-       name: docker
-       state: start
+    - name: restart docker after adding the user
+      service:
+          name: docker
+          state: start
       
+    - name: execute docker run
+      service:
+          name: docker
+          command: docker run -name new app -d -p 5000:5000 hrapp:v1
 
-  - name: execute docker run
-     service:
-       name: docker
-       command: docker run -name new app -d -p 5000:5000 hrapp:v1
-
-
- - name: install git packages
-     yum:
-       name: git
-       state: latest
+    - name: install git packages
+      yum:
+        name: git
+        state: latest
 
 
 
