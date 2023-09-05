@@ -5,7 +5,7 @@
       yum:
         name: git
         state: latest
-        
+
     - name: Create a directory if it doesn't exist
       file:
         path: workspace/hrapp
@@ -22,7 +22,7 @@
     - name: restart docker after adding the user
       service:
           name: docker
-          state: start
+          state: restarted
       
     - name: execute docker run
       service:
