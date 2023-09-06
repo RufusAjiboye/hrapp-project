@@ -6,11 +6,6 @@
         name: git
         state: latest
 
-    - name: Install python 
-      yum:
-         name: python
-         state: latest
-
     - name: Create a directory if it doesn't exist
       file:
         path: workspace/hrapp
@@ -29,12 +24,14 @@
           name: docker
           state: restarted
 
+    - name: Install python
+      yum:
+         name: python
+         state: latest
+
 
       
       
-
-
-
     # - name: Create docker container
     #   service:
     #     name: hrpp_container
