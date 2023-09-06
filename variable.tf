@@ -52,11 +52,11 @@ variable "identifier" {
   default     = "hrapp-database"
 }
 
-variable "docker-passowrd" {
-  description = "This variable will manage the docker credentials"
-  type        = string
-  default     = "london100"
-}
+
+
+
+
+
 
 # variable "default_tags" {
 #   description = "This variable is declared here to manage ec2 tags"

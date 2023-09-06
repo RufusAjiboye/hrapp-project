@@ -24,14 +24,14 @@
           name: docker
           state: restarted
       
-    - name: Create docker container
-      service:
-        name: hrpp_container
-        image: 02271589/proj:v6
-        stare: started
-        ports:
-         - 5000:5000
-         detach: true
+    # - name: Create docker container
+    #   service:
+    #     name: hrpp_container
+    #     image: 02271589/proj:v6
+    #     stare: started
+    #     ports:
+    #      - 5000:5000
+    #      detach: true
 
 
 

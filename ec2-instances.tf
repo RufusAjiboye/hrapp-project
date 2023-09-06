@@ -8,7 +8,7 @@ resource "aws_instance" "appnode1" {
   associate_public_ip_address = true
 
   tags = {
-    Name = "HrApp_Server1"
+    Name = "HrApp_Server"
   }
 }
 
@@ -23,9 +23,10 @@ resource "aws_instance" "appnode2" {
   associate_public_ip_address = true
 
   tags = {
-    Name = "HrApp_Server 2"
+    Name = "HrApp_Server"
   }
 }
+
 
 resource "aws_instance" "appnode3" {
   
@@ -37,10 +38,9 @@ resource "aws_instance" "appnode3" {
   associate_public_ip_address = true
 
   tags = {
-    Name = "HrApp_Server 3"
+    Name = "HrApp_Server"
   }
 }
-
 
 resource "aws_instance" "appnode4" {
   
@@ -52,9 +52,10 @@ resource "aws_instance" "appnode4" {
   associate_public_ip_address = true
 
   tags = {
-    Name = "Tool_Server"
+    Name = "HrApp_Server"
   }
 }
+
 
 resource "aws_instance" "appnode5" {
   
@@ -66,6 +67,8 @@ resource "aws_instance" "appnode5" {
   associate_public_ip_address = true
 
   tags = {
-    Name = "Monitoring_Server"
+    Name = "HrApp_Server"
   }
 }
+
+
