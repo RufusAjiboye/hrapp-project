@@ -16,8 +16,11 @@ Load balancer(s)
 Route 53
 TLS Certificate
 SES ( potentially)
-CloudWatch
+Git/GitHub
+Terraform
+Monitoring: Prometheus, Grafana, Alertmanager
 EC2
+RDS
 
 
 
