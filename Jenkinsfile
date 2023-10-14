@@ -7,7 +7,7 @@ pipeline {
 
         hub_username = credentials ('hub-username')
         hub_password = credentials ('hub-password')
-        version = "v3"
+        version = "v4"
     }
 
     stages {
