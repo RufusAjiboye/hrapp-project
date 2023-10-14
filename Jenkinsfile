@@ -7,7 +7,7 @@ pipeline {
 
         hub_username = credentials ('hub-username')
         hub_password = credentials ('hub-password')
-        version = "v4"
+        version = "v3"
     }
 
     stages {
@@ -65,19 +65,19 @@ pipeline {
         }  
     }
 
-    // post {
-    //     always {
-    //         deleteDir()
-    //     }
+    post {
+        always {
+            deleteDir()
+        }
 
-    //      success {
-    //         echo 'Build is successful'
-    //     }
+         success {
+            echo 'Build is successful'
+        }
 
-    //     failure {
-    //         echo 'Build is not successful'
-    //     }
-    // }
+        failure {
+            echo 'Build is not successful'
+        }
+    }
 }
 
 
