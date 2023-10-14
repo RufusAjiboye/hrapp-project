@@ -65,19 +65,19 @@ pipeline {
         }  
     }
 
-    post {
-        always {
-            deleteDir()
-        }
+    // post {
+    //     always {
+    //         deleteDir()
+    //     }
 
-         success {
-            echo 'Build is successful'
-        }
+    //      success {
+    //         echo 'Build is successful'
+    //     }
 
-        failure {
-            echo 'Build is not successful'
-        }
-    }
+    //     failure {
+    //         echo 'Build is not successful'
+    //     }
+    // }
 }
 
 
