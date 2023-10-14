@@ -1,5 +1,6 @@
 pipeline {
     agent any
+    
     environment {
         ACCCESS_KEY_ID = credentials ('ACCESS_KEY_ID')
         SECRET_ACCESS_KEY = credentials('SECRET_ACCESS_KEY')
@@ -74,7 +75,7 @@ pipeline {
         }
 
         failure {
-            echo 'This has failed'
+            echo 'Build id not successful'
         }
     }
 }

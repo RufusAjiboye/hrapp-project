@@ -58,10 +58,10 @@ resource "aws_db_instance" "db_instance" {
 }
 
 output "security_group_id" {
-  value       = aws_security_group.database_security_group.id
+  value = aws_security_group.database_security_group.id
 }
 output "db_instance_endpoint" {
-  value       = aws_db_instance.db_instance.endpoint
+  value = aws_db_instance.db_instance.endpoint
 }
 
 

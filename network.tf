@@ -1,7 +1,7 @@
 resource "aws_vpc" "main" {
-  cidr_block       = "10.0.0.0/16"
-  instance_tenancy = "default"
-  enable_dns_support = true
+  cidr_block           = "10.0.0.0/16"
+  instance_tenancy     = "default"
+  enable_dns_support   = true
   enable_dns_hostnames = true
 
   tags = {
@@ -10,7 +10,7 @@ resource "aws_vpc" "main" {
 }
 
 resource "aws_subnet" "subnet_public1" {
-  vpc_id            = aws_vpc.main.id 
+  vpc_id            = aws_vpc.main.id
   cidr_block        = "10.0.1.0/24"
   availability_zone = "eu-west-1a"
 
@@ -62,51 +62,51 @@ resource "aws_route" "awsroute" {
 }
 
 
-# resource "aws_eip" "elastic_ip_nat_gateway" {
-#   vpc                       = true
-#   associate_with_private_ip = "10.0.0.10"
+resource "aws_eip" "elastic_ip_nat_gateway" {
+  # vpc_id                      = true
+  associate_with_private_ip = "10.0.0.10"
 
-#   tags = {
-#     name = "hr-app"
-#   }
-# }
+  tags = {
+    name = "hr-app"
+  }
+}
 
-#########private network#########
-# resource "aws_subnet" "subnet_private1" {
-#   vpc_id            = var.my-vpc
-#   cidr_block        = "10.0.3.0/24"
-#   availability_zone = "eu-west-1a"
+########private network#########
+resource "aws_subnet" "subnet_private1" {
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.0.3.0/24"
+  availability_zone = "eu-west-1a"
 
-#   tags = {
-#     Name = "Main1"
-#   }
-# }
+  tags = {
+    Name = "Main1"
+  }
+}
 
-# resource "aws_subnet" "subnet_private2" {
-#   vpc_id            = var.my-vpc
-#   cidr_block        = "10.0.4.0/24"
-#   availability_zone = "eu-west-1b"
+resource "aws_subnet" "subnet_private2" {
+  vpc_id            = aws_vpc.main.id
+  cidr_block        = "10.0.4.0/24"
+  availability_zone = "eu-west-1b"
 
-#   tags = {
-#     Name = "Main2"
-#   }
-# }
+  tags = {
+    Name = "Main2"
+  }
+}
 
-# resource "aws_route_table" "negative_awsrt" {
-#   vpc_id = var.my-vpc
+resource "aws_route_table" "negative_awsrt" {
+  vpc_id = aws_vpc.main.id
 
-#   tags = {
-#     Name = "RouteTable"
-#   }
-# }
+  tags = {
+    Name = "RouteTable"
+  }
+}
 
-# resource "aws_route_table_association" "negative_rta3" {
-#   subnet_id      = aws_subnet.subnet_private1.id
-#   route_table_id = aws_route_table.negative_awsrt.id
-# }
+resource "aws_route_table_association" "negative_rta3" {
+  subnet_id      = aws_subnet.subnet_private1.id
+  route_table_id = aws_route_table.negative_awsrt.id
+}
 
 
-# resource "aws_route_table_association" "negative_rta4" {
-#   subnet_id      = aws_subnet.subnet_private2.id
-#   route_table_id = aws_route_table.negative_awsrt.id
-# }
+resource "aws_route_table_association" "negative_rta4" {
+  subnet_id      = aws_subnet.subnet_private2.id
+  route_table_id = aws_route_table.negative_awsrt.id
+}

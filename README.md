@@ -21,6 +21,12 @@ Terraform
 Monitoring: Prometheus, Grafana, Alertmanager
 EC2
 RDS
+Jenkins
+CloudWatch
+Ansible
+Kubernetes
+Docker
+Docker-compose
 
 
 

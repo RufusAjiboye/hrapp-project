@@ -13,13 +13,13 @@ variable "VPC_value" {
 variable "ec2_key_name" {
   description = "This is a variable to manage ec2 key name"
   type        = string
-  default     =  "test100" #"cloud1b"
+  default     = "test100"
 }
 
 variable "ec2_instance_type" {
   description = "This is a variable to manage ec2 instance type"
   type        = string
-  default     = "t2.micro"
+  default     = "t2.medium"
 }
 
 variable "certificate_arn" {
