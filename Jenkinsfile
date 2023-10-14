@@ -53,14 +53,14 @@ pipeline {
         stage ('login to the image repo') {
             steps {
                 echo "login to docker hub repo"
-                  sh'docker login -u $hub_username -p $hub_password'
+                  sh 'docker login -u $hub_username -p $hub_password'
             }
         }
 
         stage ('publish image to dockerhub') {
             steps {
                 echo "Push image to the Image repo"
-                  sh'docker push 02271589/proj:$version'     
+                  sh 'docker push 02271589/proj:$version'     
             }
         }  
     }
