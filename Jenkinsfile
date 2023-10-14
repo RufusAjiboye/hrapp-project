@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     environment {
         ACCCESS_KEY_ID = credentials ('ACCESS_KEY_ID')
         SECRET_ACCESS_KEY = credentials('SECRET_ACCESS_KEY')
@@ -70,13 +70,13 @@ pipeline {
             deleteDir()
         }
 
-         success {
-            echo 'Build is successful'
-        }
+        //  success {
+        //     echo 'Build is successful'
+        // }
 
-        failure {
-            echo 'Build id not successful'
-        }
+        // failure {
+        //     echo 'Build is not successful'
+        // }
     }
 }
 
