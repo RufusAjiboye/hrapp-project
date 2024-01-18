@@ -10,7 +10,7 @@ terraform {
     bucket = "techbleats-terraform-state-files"
     key    = "hrapp/terraform.tfstate"
     # bucket = var.bucket
-    #  key = var.key
+    # key = var.key
     region = "eu-west-1"
   }
 
