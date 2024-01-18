@@ -67,7 +67,6 @@ variable "identifier" {
 #     "can destroy" = "yes"
 #   }
 # }
-
 # variable "bucket" {}
 # variable "key" {}
 

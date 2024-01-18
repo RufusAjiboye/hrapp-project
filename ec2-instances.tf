@@ -8,7 +8,7 @@ resource "aws_instance" "appnode1" {
   associate_public_ip_address = true
 
   tags = {
-    Name = "HrApp_Server1"
+    Name = "HrAppServer1"
   }
 }
 

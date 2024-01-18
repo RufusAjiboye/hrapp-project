@@ -110,13 +110,6 @@ pipeline {
 
 
 
-
-
-
-
-
-
-
 // REGION = credentials ('region')
         // INSTANCE_TYPE = credentials ('InstanceType')
         // AMI_ID = credentials ('myKey')

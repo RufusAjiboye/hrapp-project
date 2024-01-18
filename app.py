@@ -111,6 +111,7 @@ def user_delete(id):
         db.session.commit()
         return redirect(url_for("user_list"))
 
+
 @app.route("/user/<int:id>")
 def user_detail(id):
     user = User.query.filter_by(id=id).all()

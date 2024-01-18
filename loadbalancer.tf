@@ -18,7 +18,7 @@ resource "aws_lb_target_group" "hrapp_tg" {
   vpc_id   = aws_vpc.main.id
 }
 
-# Load balancer listening on port 80 and 443
+# Load balancer listening on port 80 and port 443
 resource "aws_lb_listener" "hrapp_listener1" {
   load_balancer_arn = aws_lb.hrapp_lb.arn
   port              = "80"

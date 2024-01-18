@@ -35,6 +35,6 @@ resource "aws_security_group" "myhrapp_sg" {
   }
 
   tags = {
-    Name = "HrApp"
+    Name = "HrApps"
   }
 }
