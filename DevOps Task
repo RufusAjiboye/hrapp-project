@@ -8,7 +8,7 @@ AWS Services
 RDS/ Postgres Database
 Loa balancer(s)
 Route 53
-TLS Certificate
+TLS Certificates
 SES ( potentially)
 CloudWatch
 EC2
