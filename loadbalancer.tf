@@ -30,7 +30,6 @@ resource "aws_lb_listener" "hrapp_listener1" {
   }
 }
 
-
 resource "aws_lb_listener" "hrapp_listener2" {
   load_balancer_arn = aws_lb.hrapp_lb.arn
   port              = "443"

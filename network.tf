@@ -61,7 +61,6 @@ resource "aws_route" "awsroute" {
   destination_cidr_block = "0.0.0.0/0"
 }
 
-
 resource "aws_eip" "elastic_ip_nat_gateway" {
   # vpc_id                      = true
   associate_with_private_ip = "10.0.0.10"

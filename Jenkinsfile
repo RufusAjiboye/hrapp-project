@@ -26,7 +26,6 @@ pipeline {
         //     }
         // }
 
-
         //  stage ('terraform apply') {
         //     steps {
         //         sh '''

@@ -12,7 +12,6 @@ resource "aws_instance" "appnode1" {
   }
 }
 
-
 resource "aws_instance" "appnode2" {
 
   ami                         = var.ec2_ami
